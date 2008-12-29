@@ -1,0 +1,130 @@
+/*
+
+member directory styles
+
+*/
+
+
+
+input, textarea, select{
+  padding:2px;
+  font:120% sans-serif;
+}
+
+fieldset {
+	margin-left: 25px;
+	margin-bottom: 25px;
+}
+
+.post-body{
+  padding:0;
+}
+h3.notice{
+  border:1px solid #8B000C;
+  border-left:0;
+  border-right:0;
+  background:#E1D5B6;
+  font-size:140%;
+  padding:.2em;
+  margin: 0 0 2em;
+}
+.form-block{
+}
+.form-block p{
+  clear:left;
+  margin:5px 0;
+}
+.form-block p label{
+  width:10em;
+  float:left;
+  display:block;
+  text-align:right;
+  padding-right:3px;
+}
+.form-block p label.req{
+  font-weight:bold;
+}
+
+#content p.btn{
+  padding-left:10em;
+  margin-left:3px;
+}
+#content p.btn input{
+    width:auto;
+}
+
+/* Member listing styles
+******************************************************************************/
+.member {
+	clear: left;
+	padding: 0;
+	margin-bottom: 5em;
+}
+
+.memberImage {
+  width: 120px;
+  margin-left: 25px;
+  display: block;
+  float: left;
+}
+
+
+.memberInfo {
+  width: 300px;
+  display: block;
+  float: left;
+}
+
+
+
+.member-image {
+  border:1px solid #ccc;
+  padding:4px;
+}
+
+
+
+.member:after{
+	content:"";
+	display:block;
+	overflow:hidden;
+	height:0;
+	text-align: left;
+	clear:both;
+}
+/* hide mac ie \*/
+* html .member { height:1px; }
+/* end hide */
+
+
+.memberName {
+	font-size: 2.5em;
+	display: block;
+	font-variant: small-caps;
+	margin-bottom: .3em;
+}
+
+.memberTitle {
+	display: block;
+	color: #8d8d8d;
+	margin-bottom: .5em;
+	font-size: 1.5em;
+}
+
+.desc {
+	display: inline;
+	color: #8d8d8d;
+	font-size: 1em;
+	font-weight: 900;
+}
+
+.memberContact {
+	color: purple;
+	text-decoration: none;
+	display: block;
+}
+
+.memberContact a {
+	color: purple;
+	text-decoration: none;
+}

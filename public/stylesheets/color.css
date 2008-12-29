@@ -1,0 +1,146 @@
+/*
+--------------------------------------------------
+{$company_name} - Color styles
+Author: James Hill, SonicIQ - [soniciq.com]
+-------------------------------------------------- */
+
+
+/* = Red
+-------------------------------------------------- */
+.cs0 {
+	background-color: #7d000a;
+	background-image: url(../images/cs0_main.gif);
+}
+.cs0 h1, .cs0 h2, .cs0 h3, .cs0 h4, .cs0 h5, .cs0 h6 {
+	color: #7d000a;
+}
+.cs0 a, .cs0 a:visited, .cs0 a:active {
+	color: #7d000a;
+}
+.cs0 a:hover {
+	color: #8e111b;
+}
+.cs0 #wrapper {
+	background-image: url(../images/cs0_grad.gif);
+}
+.cs0 #w2 {
+	background-image: url(../images/cs0_border_left.gif);
+}
+.cs0 #w3 {
+	background-image: url(../images/cs0_border_right.gif);
+}
+.cs0 #header {
+	background-image: url(../images/cs0_header.gif);
+}
+.cs0 #logo {
+	background-image: url(../images/cs0_logo.gif);
+}
+.cs0 #search {
+	background-image: url(../images/cs0_search.gif);
+}
+.cs0 #content, .cs0 #subcol {
+	background-image: url(../images/cs0_subcol_borders.gif);
+}
+.cs0 #sc2 {
+	background-color: #d6c69c;
+}
+.cs0 #subcol .bt, .cs0 #subcol .bt div,
+.cs0 #subfoot .bb, .cs0 #subfoot .bb div {
+	background-image: url(../images/cs0_subcol.gif);
+}
+.cs0 .post .post-title, .cs0 .post .post-title h1 {
+	background-color: #7d000a;
+	background-image: url(../images/cs0_post_head.gif);
+}
+.cs0 .post .auth em, .cs0 .post .auth em span {
+  color: #7d000a;
+	background-image: url(../images/cs0_cal.gif);
+}
+.cs0 #subcol .sidebar-node {
+	background-color: #e1d5b6;
+}
+.cs0 #subcol .sidebar-node h3 {
+	background-color: #e1d5b6;
+	background-image: url(../images/cs0_sidenode_header.gif);
+}
+.cs0 #subcol .sidebar-node ul {
+	background-image: url(../images/cs0_sidenode_foot.gif);
+	padding-top: 2px;
+}
+.cs0 #subcol .sidebar-node ul li {
+	background-image: url(../images/cs0_sidenode_bullet.gif);
+	border-top: 1px solid #e8e0c9;
+	border-bottom: 1px solid #d6c69c;
+}
+
+
+/* = Mint
+-------------------------------------------------- */
+.cs1 {
+	background-color: #46501c;
+	background-image: url(../images/cs1_main.gif);
+}
+.cs1 h1, .cs1 h2, .cs1 h3, .cs1 h4, .cs1 h5, .cs1 h6 {
+	color: #373935;
+}
+.cs1 a, .cs1 a:visited, .cs1 a:active {
+	color: #373935;
+}
+.cs1 a:hover {
+	color: #46501c;
+}
+.cs1 #wrapper {
+	background-image: url(../images/cs1_grad.gif);
+}
+.cs1 #w2 {
+	background-image: url(../images/cs1_border_left.gif);
+}
+.cs1 #w3 {
+	background-image: url(../images/cs1_border_right.gif);
+}
+.cs1 #header {
+	background-image: url(../images/cs1_header.gif);
+}
+.cs1 #logo {
+	background-image: url(../images/cs1_logo.gif);
+}
+.cs1 #search {
+	background-image: url(../images/cs1_search.gif);
+}
+.cs1 #content, .cs1 #subcol {
+	background-image: url(../images/cs1_subcol_borders.gif);
+}
+.cs1 #sc2 {
+	background-color: #b6c688;
+}
+.cs1 #subcol .bt, .cs1 #subcol .bt div,
+.cs1 #subfoot .bb, .cs1 #subfoot .bb div {
+	background-image: url(../images/cs1_subcol.gif);
+}
+.cs1 .post .post-title, .cs1 .post .post-title h1 {
+	background-color: #373935;
+	background-image: url(../images/cs1_post_head.gif);
+}
+.cs1 .post .auth em, .cs1 .post .auth em span {
+  color: #373935;
+	background-image: url(../images/cs1_cal.gif);
+}
+.cs1 #subcol .sidebar-node {
+	background-color: #c9dba1;
+}
+.cs1 #subcol .sidebar-node h3 {
+	background-color: #c9dba1;
+	background-image: url(../images/cs1_sidenode_header.gif);
+}
+.cs1 #subcol .sidebar-node ul {
+	background-image: url(../images/cs1_sidenode_foot.gif);
+}
+.cs1 #subcol .sidebar-node ul li {
+	background-image: url(../images/cs1_sidenode_bullet.gif);
+}
+
+/* = Bleached (in progress)
+-------------------------------------------------- */
+.cs2 .post .auth em, .cs2 .post .auth em span {
+	background-image: url(../images/cs2_cal.gif);
+}

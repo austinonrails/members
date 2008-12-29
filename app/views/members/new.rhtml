@@ -1,0 +1,12 @@
+<%= render(:partial => 'content_heading', 
+  :locals => {"heading_text" => "New Member", "sub_heading_text" => "Fields in <strong>bold</strong> are required"}) %>
+<div class="post-body">
+	<% if flash[:notice] -%>
+	<h3 class="notice"><%= flash[:notice] %></h3>
+	<% end -%>
+<%= start_form_tag({ :action => 'create' }, { :multipart => true }) %>
+  <%= render :partial => 'form' %>
+  <p class="btn"><%= submit_tag "   Add me!   " %>
+    -or- <%= link_to 'Cancel', :action => 'index' %></p>
+<%= end_form_tag %>
+</div> <!-- end .post-body -->

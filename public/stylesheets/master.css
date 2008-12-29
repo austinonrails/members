@@ -1,0 +1,27 @@
+/*
+--------------------------------------------------
+{$company_name} - Screen master styles
+Author: James Hill, SonicIQ - [soniciq.com]
+-------------------------------------------------- */
+
+@import url(base.css);
+
+/* = Basic styles
+----------------------------------------------- */
+a img {
+	border-width: 0;
+	border-style: none;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+}
+
+/* = Mid-pass filter
+----------------------------------------------- */
+@media tty {
+ i{content:"\";/*" "*/}} @import 'ie5win.css'; /*";}
+}/* */
+
+
+

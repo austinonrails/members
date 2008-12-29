@@ -1,0 +1,1 @@
+require 'verbose_migrations'

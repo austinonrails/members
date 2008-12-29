@@ -1,0 +1,10 @@
+<%= render(:partial => 'content_heading', 
+  :locals => {"heading_text" => "Editing Member: #{@member.first_name} #{@member.last_name}", 
+  "sub_heading_text" => "Fields in <strong>bold</strong> are required"}) %>
+<div class="post-body">
+<%= start_form_tag({ :action => 'update', :id => @member }, { :multipart => true }) %>
+  <%= render :partial => 'form' %>
+  <p class="btn"><%= submit_tag 'Edit' %>
+    -or- <%= link_to 'Cancel Edit', :action => 'index' %></p>
+<%= end_form_tag %>
+</div> <!-- end .post-body -->

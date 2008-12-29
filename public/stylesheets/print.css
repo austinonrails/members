@@ -1,0 +1,97 @@
+/*
+--------------------------------------------------
+{$company_name} - Print styles
+Author: James Hill, SonicIQ - [soniciq.com]
+-------------------------------------------------- */
+
+
+/* = Page
+-------------------------------------------------- */
+body {
+	margin: .1in;
+	padding: 0;
+	font: x-small Verdana, Sans-serif;
+}
+
+
+/* = Header
+-------------------------------------------------- */
+#header {
+	margin: 0;
+}
+#header #logo {
+	margin: 0 0 0 -5px;
+}
+
+
+/* = Hide
+-------------------------------------------------- */
+#subcol, #xcol, #nav {
+	display: none;
+}
+
+
+/* = Headings
+-------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+	margin: 1em 0 .5em;
+	font-family: "Trebuchet MS",Georgia, Serif;
+	font-weight: normal;
+	clear: both;
+}
+h1 {
+	margin-top: .5em;
+	font-size: 180%;
+}
+h2 {
+	margin-top: 2em;
+	font-size: 140%;
+}
+h3 {
+	font-size: 125%;
+}
+
+
+/* = Links
+-------------------------------------------------- */
+a {
+	color: black;
+	text-decoration: none;
+}
+a img {
+	border-width: 0;
+}
+
+
+/* = Misc
+-------------------------------------------------- */
+p {
+	margin: 0 0 .75em;
+	line-height: 1.3em;
+}
+p {
+	line-height: 1.8em;
+}
+hr {
+  display: none;
+}
+th {
+	text-align: left;
+	padding-top: 1em;
+}
+.clearboth {
+  clear: both;
+}
+
+
+/* = Footer
+-------------------------------------------------- */
+#footer {
+	margin-top: .25in;
+	border-top: .75pt solid silver;
+	padding-top: .1in;
+	font-size: 85%;
+}
+#footer p {
+	margin: 0;
+}

@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first_programmer:
+  id: 1
+  first_name: First
+  last_name: User
+  email: first@users.com
+  url: http://users.com/first/
+  password: first_guy_password
+  occupation_id: 1
+  
+second_programmer:
+  id: 2
+  first_name: Second 
+  last_name: User
+  email: second@users.com
+  url: http://users.com/second/
+  password: second_guy_password
+  occupation_id: 1
+
+first_designer:
+  id: 3
+  first_name: Edward
+  last_name: Tufte
+  email: edward@tufte.com
+  password: designer_password
+  occupation_id: 2
+
+no_occupation:
+  id: 4
+  first_name: No
+  last_name: Occupupation
+  email: none@occupation.com
+  password: foo
+  is_email_visible: false
+
+  
+  

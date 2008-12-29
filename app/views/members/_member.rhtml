@@ -1,0 +1,29 @@
+<div class="member">
+	 
+<div class="memberImage">
+	<%= member.image ? (image_tag url_for_file_column(member, :image), :class => "member-image") : "&nbsp;"  %>
+</div>
+	
+	<div class="memberInfo">
+		
+		<span class="memberName"><%= link_to h(member.full_name), :action => :show, :id => member %></span>
+	
+		<span class="memberTitle">
+			<%= h(member.occupation.name) if member.occupation %>
+		</span>
+		
+      	<span class="desc">Email: </span>
+		<%= logged_in? || member.is_email_visible ? enkode_mail(member.email, member.email) : "#{link_to "Login", :action => "login"} to view" %>
+	  	
+		<% if member.url && !member.url.empty? -%><br />
+	  	<span class="desc">URL: </span><%= link_to member.url.first(40), member.url %>
+	  	<% end -%>
+
+		<% if member.bio && ! member.bio.blank? -%>
+		<br /><span class="desc">Bio: </span>
+		<%= h(member.bio) %>
+		<% end -%>
+		
+	</div>
+
+</div>

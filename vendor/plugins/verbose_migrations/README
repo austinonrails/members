@@ -1,0 +1,51 @@
+Verbose Migrations
+==================
+
+Verbose Migrations is a plugin that causes migrations to report what they are
+doing, verbosely, to the console. By default, each migration will report it's
+name, and whether it is being migrated (up) or reverted (down). Also, each
+method missing call will be reported, with the name and arguments, so that
+things like create_table and add_index are printed.
+
+Benchmarks are also displayed, showing how long each operation took.
+
+You can use the "say" method to report your own events, such as if you are
+manipulating data directly using your own model classes:
+
+  say "migrating data"
+  Finances.update_all "amount=0", "account_id=7"
+
+If you want to also show the benchmark for a custom event like this, you can
+use "say_with_time":
+
+  say_with_time "migrating data" do
+    Finances.update_all "amount=0", "account_id=7"
+  end
+
+The output looks something like this:
+
+  == NormalizeLineItems: migrating =========================================
+  -- create_table(:account_line_items)
+     -> 0.0091s
+  -- add_index(:account_line_items, :financial_transaction_id)
+     -> 0.0054s
+  -- add_index(:account_line_items, :account_id)
+     -> 0.0049s
+  -- create_table(:budget_line_items)
+     -> 0.0064s
+  -- add_index(:budget_line_items, :financial_transaction_id)
+     -> 0.0057s
+  -- add_index(:budget_line_items, :budget_id)
+     -> 0.0195s
+  -- migrate line items to budget and account line items
+     -> 0.0059s
+  -- drop_table(:line_items)
+     -> 0.0053s
+  == NormalizeLineItems: migrated (0.0717s) ================================
+
+
+License
+=======
+
+This plugin is copyright 2005 by Jamis Buck, and is released under the MIT
+license.

@@ -1,0 +1,7 @@
+<% if @random_member %>
+<%= render(:partial => 'content_heading', 
+  :locals => { "heading_text" => "Featured Member: #{@random_member.full_name}", "sub_heading_text" => ( @random_member.created_at.nil? ? nil : "Member since #{distance_of_time_in_words_to_now(@random_member.created_at)} ago") }) %>
+<div class="post-body">
+<%= render :partial => "member", :locals => { :member => @random_member, "as_single" => true} %>
+</div> <!-- end .post-body -->
+<% end -%>
