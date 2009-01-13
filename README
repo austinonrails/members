@@ -1,0 +1,59 @@
+(in /Users/zubin/work/aor)
+--> component
+  Clean! Cheers for you!
+
+--> @session
+  Clean! Cheers for you!
+
+--> paginate
+  !! The default paginator is slow. Writing your own may be faster !!
+  ...................................................................
+controllers/members_controller.rb:11:    @member_pages, @members = paginate :members, :per_page => 10, :order => "created_at DESC"
+controllers/members_controller.rb:54:      @member_pages, @members = paginate :members, :conditions => ["occupation_id = ?", params[:id]], :per_page => 10
+
+--> find_first
+  Clean! Cheers for you!
+
+--> @request
+  Clean! Cheers for you!
+
+--> find_all
+  !! Use find(:all) instead !!
+  ............................
+views/members/_form.rhtml:30:<%= select("member", "occupation_id", Occupation.find_all.collect {|o| [ o.name, o.id ] }, { :include_blank => true }) %>
+
+--> @flash
+  Clean! Cheers for you!
+
+--> render_partial
+  Clean! Cheers for you!
+
+--> @env
+  Clean! Cheers for you!
+
+--> :post => true
+  Clean! Cheers for you!
+
+--> end_form_tag
+  !! Use form_for instead !!
+  ..........................
+views/members/edit.rhtml:9:<%= end_form_tag %>
+views/members/login.rhtml:12:</div><%= end_form_tag %>
+views/members/new.rhtml:11:<%= end_form_tag %>
+
+--> start_form_tag
+  !! Use form_for instead !!
+  ..........................
+views/members/edit.rhtml:5:<%= start_form_tag({ :action => 'update', :id => @member }, { :multipart => true }) %>
+views/members/login.rhtml:6:<%= start_form_tag :action => "login" %><div class="form-block">
+views/members/new.rhtml:7:<%= start_form_tag({ :action => 'create' }, { :multipart => true }) %>
+
+--> @params
+  Clean! Cheers for you!
+
+Loaded suite /usr/bin/rake
+Started
+
+Finished in 0.000164 seconds.
+
+0 tests, 0 assertions, 0 failures, 0 errors
