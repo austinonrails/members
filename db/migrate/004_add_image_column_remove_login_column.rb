@@ -9,7 +9,7 @@ class AddImageColumnRemoveLoginColumn < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :members, :login, :string, :null => false
+    add_column :members, :login, :string, :null => false, :default => ""
     remove_column :members, :image
   end
 end

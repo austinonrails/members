@@ -1,6 +1,6 @@
 class KillUsers < ActiveRecord::Migration
   def self.up
-    Member.destroy_all
+    execute "DELETE FROM `members`;"
   end
 
   def self.down
