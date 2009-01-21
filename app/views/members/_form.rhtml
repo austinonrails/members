@@ -27,7 +27,7 @@
 <p><label for="member_image_url">Picture</label>
 <%= file_column_field 'member', 'image'  %></p>
 <p><label for="member_occupation">Occupation</label>
-<%= select("member", "occupation_id", Occupation.find_all.collect {|o| [ o.name, o.id ] }, { :include_blank => true }) %>
+<%= select("member", "occupation_id", Occupation.find(:all).collect {|o| [ o.name, o.id ] }, { :include_blank => true }) %>
 <p><label for="member_url">Website URL</label>
 <%= text_field 'member', 'url'  %></p>
 </p>

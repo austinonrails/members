@@ -7,7 +7,7 @@
 <%= "<p>No members found</p>" if @members.empty? %>
 
 <%= "" if !@members.empty? %>
-  <%= render :partial => "member", :collection => @members, :locals => {"as_single" => false} %>
+  <%= render :partial => "member", :collection => @members, :as => :member, :locals => {"as_single" => false} %>
 <%= "" if !@members.empty? %>
 
 

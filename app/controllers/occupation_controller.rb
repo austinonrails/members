@@ -1,3 +1,3 @@
 class OccupationController < ApplicationController
-  scaffold :occupation
+  active_scaffold :occupation
 end

@@ -4,9 +4,7 @@
 	<% if flash[:notice] -%>
 	<h3 class="notice"><%= flash[:notice] %></h3>
 	<% end -%>
-<%= start_form_tag({ :action => 'create' }, { :multipart => true }) %>
-  <%= render :partial => 'form' %>
-  <p class="btn"><%= submit_tag "   Add me!   " %>
-    -or- <%= link_to 'Cancel', :action => 'index' %></p>
-<%= end_form_tag %>
+<% form_tag({ :action => 'create' }, { :multipart => true }) do %>
+  <%= render :partial => 'form' %> <p class="btn"><%= submit_tag "   Add me!   " %> -or- <%= link_to 'Cancel', :action => 'index' %></p>
+<% end %>
 </div> <!-- end .post-body -->

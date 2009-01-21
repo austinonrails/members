@@ -3,11 +3,11 @@
 	<% if flash[:notice] -%>
 	<h3 class="notice"><%= flash[:notice] %></h3>
 	<% end -%>
-<%= start_form_tag :action => "login" %><div class="form-block">
+<% form_tag :action => "login" do %><div class="form-block">
   <p><label for="member_email" class="req">Email address</label>
   <%= text_field "member", "email" %></p>
   <p><label for="member_password" class="req">Password</label>
   <%= password_field "member", "password"%></p>
   <p class="btn"><%= submit_tag "Login" %></p>
-</div><%= end_form_tag %>
+</div><% end %>
 </div> <!-- end .post-body -->
