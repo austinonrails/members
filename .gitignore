@@ -1,4 +1,7 @@
 log/**/*
 tmp/**/*
+*.log
+.DS_Store
 db/schema.rb
 db/*.sqlite3
+config/database.yml
