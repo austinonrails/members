@@ -1,0 +1,18 @@
+<div>
+	<p>
+		Name: <%=h topic.name %>
+	</p>
+	<p>
+		<%= pluralize(topic.member_interests_count, "person") %> interested
+	</p>
+	<div>
+		<% form_for(:member_interest, :url => topic_enthusiasts_path(topic)) do |f| %>
+			<%= submit_tag "I'm interested" %>
+		<% end %>
+	</div>
+	<p>
+		<%= link_to 'Show others interested', topic_enthusiasts_path(topic) %>
+		<%= link_to 'Edit', edit_topic_path(topic) %>
+		<%= link_to 'Delete', topic, :confirm => 'Are you sure?', :method => :delete %>
+	</p>
+</div>

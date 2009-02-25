@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :topics do |topic|
+    topic.resources :enthusiasts, :controller => "MemberInterests"
+  end
+
   # Add your own custom routes here.
   # The priority is based upon order of creation: first created -> highest priority.
   

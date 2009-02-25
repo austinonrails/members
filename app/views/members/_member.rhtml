@@ -23,7 +23,14 @@
 		<br /><span class="desc">Bio: </span>
 		<%= h(member.bio) %>
 		<% end -%>
+
+		<br />
+		
+      	<span class="desc">Interests: </span>
+		<% for interest in member.interests %>
+			<%= link_to h(interest.name), topic_path(interest) %>&nbsp;
+		<% end %>
 		
 	</div>
-
+	
 </div>

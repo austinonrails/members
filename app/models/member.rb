@@ -1,5 +1,7 @@
 class Member < ActiveRecord::Base
   belongs_to :occupation
+  has_many :member_interests, :dependent => :destroy
+  has_many :interests, :through => :member_interests, :source => :topic
   
   begin
     file_column :image, :magick => {:geometry => "100x"}
