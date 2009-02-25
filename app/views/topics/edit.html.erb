@@ -1,0 +1,9 @@
+<% form_for(@topic) do |f| %>
+  <%= f.error_messages %>
+
+  <%= render :partial => 'form', :locals => {:f => f} %>
+
+  <p>
+    <%= f.submit "Update" %> or <%= link_to 'Cancel', topics_path %>
+  </p>
+<% end %>
