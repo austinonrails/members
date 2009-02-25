@@ -19,6 +19,14 @@
 	  	<span class="desc">URL: </span><%= link_to member.url.first(40), member.url %>
 	  	<% end -%>
 
+		<% if member.twitter && !member.twitter.empty? -%><br />
+	  	<span class="desc">Twitter: </span><%= link_to h("@#{member.twitter}"), "http://twitter.com/#{member.twitter}", :target => '_blank' %>
+	  	<% end -%>
+
+		<% if member.github && !member.github.empty? -%><br />
+	  	<span class="desc">Github: </span><%= link_to h("http://github.com/#{member.github}"), "http://github.com/#{member.github}", :target => '_blank' %>
+	  	<% end -%>
+
 		<% if member.bio && ! member.bio.blank? -%>
 		<br /><span class="desc">Bio: </span>
 		<%= h(member.bio) %>
