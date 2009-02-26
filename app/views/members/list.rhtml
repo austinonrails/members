@@ -11,11 +11,5 @@
 <%= "" if !@members.empty? %>
 
 
-
-<% if @member_pages %>
-<p>
-	<%= link_to 'Previous', { :page => @member_pages.current.previous } if @member_pages.current.previous %>
-	<%= link_to 'Next', { :page => @member_pages.current.next } if @member_pages.current.next %> 
-</p>
-<% end %>
+<%= will_paginate @members %>
 </div> <!-- end .post-body -->

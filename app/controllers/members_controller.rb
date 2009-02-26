@@ -8,7 +8,7 @@ class MembersController < ApplicationController
   end
 
   def list
-    @member_pages, @members = paginate :members, :per_page => 10, :order => "created_at DESC"
+    @members = Member.find(:all).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   end
 
   def show
@@ -51,7 +51,7 @@ class MembersController < ApplicationController
   def members_by_occupation
     begin
       @occupation = Occupation.find(params[:id])
-      @member_pages, @members = paginate :members, :conditions => ["occupation_id = ?", params[:id]], :per_page => 10
+      @members = Member.find(:all, :conditions => ["occupation_id = ?", params[:id]]).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     rescue
       @members = []
     end
