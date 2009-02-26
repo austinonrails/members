@@ -74,7 +74,7 @@ class MembersController < ApplicationController
   
   def logout
     session[:user_id] = nil
-    redirect_to :action => 'index'
+    redirect_to home_path
   end
   
   private
