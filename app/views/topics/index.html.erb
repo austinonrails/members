@@ -1,5 +1,7 @@
 <%= render :partial => 'topic', :collection => @topics %>
 
+<%= will_paginate @topics %>
+
 <br />
 
 <%= link_to 'New topic', new_topic_path %>
