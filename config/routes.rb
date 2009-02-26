@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.home '', :controller => 'members'
+  
   map.resources :topics do |topic|
     topic.resources :enthusiasts, :controller => "MemberInterests"
   end
