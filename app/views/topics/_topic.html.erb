@@ -11,6 +11,7 @@
 	<h4>
 		Name: <%=h topic.name %>
 	</h4>
+	<% if logged_in? %>
 	<p style="font-size: 0.9em;">
 		<%= link_to 'Show interested', enthusiasts_topic_path(topic) %> |
 		<%= link_to 'Show experts', experts_topic_path(topic) %> |
@@ -26,6 +27,7 @@
 			<%= f.submit "submit" %>
 		<% end %>
 	</p>
+	<% end %>
 </div>
 
 <div class="spacer"></div>

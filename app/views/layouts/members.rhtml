@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Austin On Rails</title>
+  <title>Austin On Rails | Austin's Official Ruby on Rails User Group</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="author" content="Jamie Hill" />
   <title>Members: <%= controller.action_name %></title>
@@ -15,8 +15,7 @@
 <div id="header" class="clearfix">
   <div id="logo">
     <h1><%= link_to "Austin on Rails", "http://www.austinonrails.org" %></h1>
-    <h2><%= link_to "Member Directory", :controller => 'members' %> for Austin's offical Ruby on Rails User Group</h2>
-    <h2><%= link_to "Topics List", :controller => 'topics' %></h2>
+    <h2><%= link_to "Member Directory", :controller => 'members' %> | <%= link_to "Topics List", :controller => 'topics' %></h2>
   </div>
   <div id="search">
 
@@ -49,6 +48,7 @@
         <h3>Navigation</h3>
 	  <ul>
         <li><%= link_to 'Member Listing', :action => 'list' %></li>
+        <li><%= link_to 'Topic Listing', topics_path %></li>
       <% if logged_in? %>
         <li><%= link_to 'Edit your profile', :action => 'edit', :id => session[:user_id] %></li>
 		<li><%= link_to 'Logout', :action => 'logout' %></li>
