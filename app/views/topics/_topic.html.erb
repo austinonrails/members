@@ -8,6 +8,24 @@
 	<p>
 		<%= pluralize(topic.topic_speakers_count, "speaker") %>
 	</p>
+	<div>
+		<% if current_member.interested_in?(topic) %>
+			expressed interested
+		<% else %>
+			<% form_for(:member_interest, :url => topic_enthusiasts_path(topic)) do |f| %>
+				<%= submit_tag "I'm interested" %>
+			<% end %>
+		<% end %>
+	</div>
+	<div>
+		<% if current_member.will_speak_on?(topic) %>
+			wants to speak
+		<% else %>
+			<% form_for(:topic_speaker, :url => topic_speakers_path(topic)) do |f| %>
+				<%= submit_tag "I'll speak" %>
+			<% end %>
+		<% end %>
+	</div>
 	<p>
 		<%= link_to 'Show others interested', topic_enthusiasts_path(topic) %>
 		<%= link_to 'Show speakers', topic_speakers_path(topic) %>
