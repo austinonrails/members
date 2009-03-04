@@ -49,11 +49,11 @@
 	  <ul>
         <li><%= link_to 'Member Listing', list_members_path %></li>
         <li><%= link_to 'Topic Listing', topics_path %></li>
-      <% if logged_in? %>
-        <li><%= link_to 'Edit your profile', edit_member_path(session[:user_id]) %></li>
-		<li><%= link_to 'Logout', logout_path %></li>
+      <% if current_member %>
+        <li><%= link_to 'Edit your profile', edit_member_path(current_member.id) %></li>
+		<li><%= link_to "Logout", member_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %></li>
       <% else %>
-        <li><%= link_to 'Create a new profile', :action => 'new' %></li>
+        <li><%= link_to 'Create a new profile', :controller => 'members', :action => 'new' %></li>
 		<li><%= link_to 'Login', :action => 'login' %></li>
       <% end %>
 	  </ul>

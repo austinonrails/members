@@ -13,7 +13,7 @@
 		</span>
 		
       	<span class="desc">Email: </span>
-		<%= logged_in? || member.is_email_visible ? enkode_mail(member.email, member.email) : "#{link_to "Login", :action => "login"} to view" %>
+		<%= current_member_session || member.is_email_visible ? enkode_mail(member.email, member.email) : "#{link_to "Login", :action => "login"} to view" %>
 	  	
 		<% if member.url && !member.url.empty? -%><br />
 	  	<span class="desc">URL: </span><%= link_to member.url.first(40), member.url %>

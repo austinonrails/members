@@ -1,7 +1,8 @@
 class MembersController < ApplicationController
   
-  before_filter :check_authentication, :only => [:edit, :update]
-  
+  before_filter :require_no_member, :only => [:new, :create]
+  before_filter :require_member, :only => [ :edit, :update]
+
   def index
     list
     render :template => "members/list"
@@ -35,11 +36,13 @@ class MembersController < ApplicationController
   end
 
   def edit
-    @member = Member.find(session[:user_id])
+    # only allows for member to edit his own profile
+    @member = @current_member
   end
 
   def update
-    @member = Member.find(params[:id])
+    #always updating the current member
+    @member =  @current_member # makes our views "cleaner" and more consistent
     if @member.update_attributes(params[:member])
       flash[:notice] = 'Member was successfully updated.'
       redirect_to :action => 'index'
@@ -58,27 +61,6 @@ class MembersController < ApplicationController
     render :template => 'members/list'
   end
   
-  def login
-    if request.post?
-      @member = Member.authenticate(params[:member][:email], params[:member][:password])
-      if @member
-        session[:user_id] = @member.id
-        flash[:welcome] = "Welcome back, #{@member.first_name}"
-        redirect_to :action => "list"
-      else
-        flash[:notice] = "Login incorrect, please try again."
-        @member= Member.new(:email => params[:member][:email])
-      end
-    end
-  end
-  
-  def logout
-    session[:user_id] = nil
-    redirect_to home_path
-  end
-  
   private
-  def check_authentication
-    redirect_to :action => 'login' unless session[:user_id] and params[:id] == session[:user_id].to_s
-  end
+
 end

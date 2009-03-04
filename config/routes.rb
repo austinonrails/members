@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.home '', :controller => 'members'
+  map.resource :member_session
+  map.connect 'members/login',  :controller => "member_sessions", :action => "new"
+
   
   map.resources :members, :collection => {:list => :get}
   map.resources :topics, :member => {:enthusiasts => :get, :experts => :get, :speakers => :get} do |topic|

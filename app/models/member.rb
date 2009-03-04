@@ -1,4 +1,9 @@
 class Member < ActiveRecord::Base
+
+  #for authlogin plugin
+  # using email for the login id
+  acts_as_authentic  :login_field => 'email'
+  
   belongs_to :occupation
   has_many :member_interests, :dependent => :destroy
   has_many :interests, :through => :member_interests, :source => :topic, :conditions => {'member_interests.is_interested' => true}
