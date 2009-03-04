@@ -1,5 +1,5 @@
 class Topic < ActiveRecord::Base
-  has_many :member_interests
+  has_many :member_interests, :dependent => :destroy
   has_many :enthusiasts, :through => :member_interests, :source => :member, :conditions => {'member_interests.is_interested' => true}
   has_many :experts, :through => :member_interests, :source => :member, :conditions => {'member_interests.is_expert' => true}
   has_many :speakers, :through => :member_interests, :source => :member, :conditions => {'member_interests.will_speak' => true}
