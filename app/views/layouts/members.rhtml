@@ -47,11 +47,11 @@
       <div class="sidebar-node">
         <h3>Navigation</h3>
 	  <ul>
-        <li><%= link_to 'Member Listing', :action => 'list' %></li>
+        <li><%= link_to 'Member Listing', list_members_path %></li>
         <li><%= link_to 'Topic Listing', topics_path %></li>
       <% if logged_in? %>
-        <li><%= link_to 'Edit your profile', :action => 'edit', :id => session[:user_id] %></li>
-		<li><%= link_to 'Logout', :action => 'logout' %></li>
+        <li><%= link_to 'Edit your profile', edit_member_path(session[:user_id]) %></li>
+		<li><%= link_to 'Logout', logout_path %></li>
       <% else %>
         <li><%= link_to 'Create a new profile', :action => 'new' %></li>
 		<li><%= link_to 'Login', :action => 'login' %></li>
