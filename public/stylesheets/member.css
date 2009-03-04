@@ -136,6 +136,11 @@ h3.notice{
 
 .topic_row {
 	margin-bottom: 35px;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.topic_row h1 {
+	font-size: 1.6em;
 }
 
 .vote_box {
@@ -144,6 +149,7 @@ h3.notice{
 	padding:0 3px 4px;
 	text-align:center;
 	width:69px;
+	height:80px;
 }
 
 .vote_count {

@@ -8,23 +8,23 @@
 		</div>
 	</div>
 	
-	<h4>
-		Name: <%=h topic.name %>
-	</h4>
+	<h1>
+		<%=h topic.name %>
+	</h1>
 	<% if logged_in? %>
-	<p style="font-size: 0.9em;">
-		<%= link_to 'Show interested', enthusiasts_topic_path(topic) %> |
-		<%= link_to 'Show experts', experts_topic_path(topic) %> |
-		<%= link_to 'Show speakers', speakers_topic_path(topic) %> |
-		<%= link_to 'Edit', edit_topic_path(topic) %> |
-		<%= link_to 'Delete', topic, :confirm => 'Are you sure?', :method => :delete %>
-	</p>
 	<p>
 		<% remote_form_for(:member_interest, topic.member_interest(current_member), :url => topic_interests_path(topic), :html => {:id => dom_id(topic, 'form')}) do |f| %>
 			<%= f.check_box :is_interested, :onclick => "this.form.onsubmit(); return false;" %>&nbsp;interested?
 			<%= f.check_box :is_expert, :onclick => "this.form.onsubmit(); return false;" %>&nbsp;expert?
 			<%= f.check_box :will_speak, :onclick => "this.form.onsubmit(); return false;" %>&nbsp;will speak?
 		<% end %>
+	</p>
+	<p style="font-size: 0.9em;">
+		<%= link_to 'Show interested', enthusiasts_topic_path(topic) %> |
+		<%= link_to 'Show experts', experts_topic_path(topic) %> |
+		<%= link_to 'Show speakers', speakers_topic_path(topic) %> |
+		<%= link_to 'Edit', edit_topic_path(topic) %> |
+		<%= link_to 'Delete', topic, :confirm => 'Are you sure?', :method => :delete %>
 	</p>
 	<% end %>
 </div>
