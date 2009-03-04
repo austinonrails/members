@@ -12,23 +12,14 @@ class MemberInterestsController < ApplicationController
     end
   end
 
+  # Create or update
   def create
-    @interest = MemberInterest.new
-    @interest.topic_id = params[:topic_id]
-    @interest.member_id = session[:user_id] # TODO: Let's use some better auth package
-    @interest.save
+    @member_interest = MemberInterest.find_or_create_by_topic_id_and_member_id(params[:topic_id], current_member.id)
+    @member_interest.attributes = params[:member_interest]
+    @member_interest.save
     
     respond_to do |format|
       format.html { redirect_to topics_path }
-    end
-  end
-
-  def destroy
-    @interest = MemberInterest.find(params[:member_interest])
-    # @interest.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to topics_url }
     end
   end
 

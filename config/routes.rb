@@ -1,9 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.home '', :controller => 'members'
   
-  map.resources :topics do |topic|
-    topic.resources :enthusiasts, :controller => "MemberInterests"
-    topic.resources :speakers, :controller => "TopicSpeakers"
+  map.resources :topics, :member => {:enthusiasts => :get, :experts => :get, :speakers => :get} do |topic|
+    topic.resources :interests, :controller => "MemberInterests"
   end
 
   # Add your own custom routes here.

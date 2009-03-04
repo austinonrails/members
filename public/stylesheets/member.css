@@ -53,6 +53,11 @@ h3.notice{
     width:auto;
 }
 
+.spacer {
+	height: 0;
+	clear: both;
+}
+
 /* Member listing styles
 ******************************************************************************/
 .member {
@@ -127,4 +132,38 @@ h3.notice{
 .memberContact a {
 	color: purple;
 	text-decoration: none;
+}
+
+.topic_row {
+	margin-bottom: 35px;
+}
+
+.vote_box {
+	float:left;
+	margin-right:10px;
+	padding:0 3px 4px;
+	text-align:center;
+	width:69px;
+}
+
+.vote_count {
+	background-color:#EEEEEE;
+	border:1px solid #CCCCCC;
+	color:#222222;
+	display:block;
+	font-size:18pt;
+	font-weight:bold;
+	padding:5px 3px 0;
+	text-decoration:none;
+}
+
+.vote_count .vote_count_label {
+	font-size:8pt;
+	font-weight:normal;
+}
+
+.vote_action {
+	display:block;
+	height:20px;
+	margin-top:3px;
 }

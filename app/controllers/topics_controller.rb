@@ -65,4 +65,31 @@ class TopicsController < ApplicationController
       format.html { redirect_to(topics_url) }
     end
   end
+  
+  def enthusiasts
+    @topic = Topic.find(params[:id])
+    @enthusiasts = @topic.enthusiasts.paginate(:page => params[:page], :per_page => 10)
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def experts
+    @topic = Topic.find(params[:id])
+    @experts = @topic.experts.paginate(:page => params[:page], :per_page => 10)
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def speakers
+    @topic = Topic.find(params[:id])
+    @speakers = @topic.speakers.paginate(:page => params[:page], :per_page => 10)
+    
+    respond_to do |format|
+      format.html
+    end
+  end
 end
