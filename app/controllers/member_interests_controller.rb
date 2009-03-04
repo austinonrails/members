@@ -24,14 +24,12 @@ class MemberInterestsController < ApplicationController
   end
 
   def destroy
-    # TODO: Implement
-    # @interest = MemberInterest.find(params[:member_interest])
-    # @topic = Topic.find(params[:id])
-    # @topic.destroy
-    # 
-    # respond_to do |format|
-    #   format.html { redirect_to(topics_url) }
-    # end
+    @interest = MemberInterest.find(params[:member_interest])
+    # @interest.destroy
+    
+    respond_to do |format|
+      format.html { redirect_to topics_url }
+    end
   end
 
 end
