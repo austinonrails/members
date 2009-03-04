@@ -1,0 +1,1 @@
+page.replace dom_id(@member_interest.topic), :partial => 'topics/topic', :locals => {:topic => @member_interest.topic}

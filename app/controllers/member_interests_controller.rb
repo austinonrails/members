@@ -20,6 +20,7 @@ class MemberInterestsController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to topics_path }
+      format.js
     end
   end
 
