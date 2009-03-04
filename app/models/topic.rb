@@ -7,4 +7,11 @@ class Topic < ActiveRecord::Base
   validates_presence_of :name
 
   attr_accessible :name
+
+  before_save :lower_name
+
+  def lower_name
+    self.name = self.name.downcase
+  end
+
 end
