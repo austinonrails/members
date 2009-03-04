@@ -1,4 +1,4 @@
-<div class="topic_row">
+<div class="topic_row" id="<%= dom_id(topic) %>">
 	<div class="vote_box">
 		<div class="vote_count">
 			<div class="vote_count_value">
@@ -20,11 +20,10 @@
 		<%= link_to 'Delete', topic, :confirm => 'Are you sure?', :method => :delete %>
 	</p>
 	<p>
-		<% form_for(:member_interest, topic.member_interest(current_member), :url => topic_interests_path(topic)) do |f| %>
-			<%= f.check_box :is_interested %>&nbsp;interested?
-			<%= f.check_box :is_expert %>&nbsp;expert?
-			<%= f.check_box :will_speak %>&nbsp;will speak?
-			<%= f.submit "submit" %>
+		<% form_for(:member_interest, topic.member_interest(current_member), :url => topic_interests_path(topic), :html => {:id => dom_id(topic, 'form')}) do |f| %>
+			<%= f.check_box :is_interested, :onclick => "this.form.submit();" %>&nbsp;interested?
+			<%= f.check_box :is_expert, :onclick => "this.form.submit();" %>&nbsp;expert?
+			<%= f.check_box :will_speak, :onclick => "this.form.submit();" %>&nbsp;will speak?
 		<% end %>
 	</p>
 	<% end %>
