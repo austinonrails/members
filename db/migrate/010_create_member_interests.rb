@@ -9,11 +9,11 @@ class CreateMemberInterests < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_column :topics, :member_interests_count, :integer, :default => 0
+    add_column :topics, :interest_count, :integer, :default => 0
   end
 
   def self.down
     drop_table :member_interests
-    remove_column :topics, :member_interests_count
+    remove_column :topics, :interest_count
   end
 end
