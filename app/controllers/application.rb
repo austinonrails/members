@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
 
   before_filter :prep_sidebar
 
+  protected
+  
+  def current_member
+    @current_member ||= Member.find(session[:user_id])
+  end
+  helper_method :current_member
+
   private
   
   def prep_sidebar
