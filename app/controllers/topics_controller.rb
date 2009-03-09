@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
   layout "members"
 
   def index
-    @topics = Topic.find(:all).paginate(:page => params[:page], :per_page => 10, :order => "interest_count DESC")
+    @topics = Topic.find(:all, :order => "interest_count desc").paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html
