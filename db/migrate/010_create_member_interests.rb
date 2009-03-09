@@ -8,12 +8,9 @@ class CreateMemberInterests < ActiveRecord::Migration
       t.boolean :will_speak, :default => false
       t.timestamps
     end
-    
-    add_column :topics, :interest_count, :integer, :default => 0
   end
 
   def self.down
     drop_table :member_interests
-    remove_column :topics, :interest_count
   end
 end
