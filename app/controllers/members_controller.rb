@@ -37,12 +37,12 @@ class MembersController < ApplicationController
 
   def edit
     # only allows for member to edit his own profile
-    @member = @current_member
+    @member = current_member
   end
 
   def update
     #always updating the current member
-    @member =  @current_member # makes our views "cleaner" and more consistent
+    @member = current_member # makes our views "cleaner" and more consistent
     if @member.update_attributes(params[:member])
       flash[:notice] = 'Member was successfully updated.'
       redirect_to :action => 'index'
