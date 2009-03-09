@@ -6,8 +6,8 @@
   <%= render :partial => 'form', :locals => {:f => f} %>
 
   <p>
-    <%= f.submit "Create" %>
+    <%= f.submit "Create" %> or <%= link_to 'Cancel', topics_path %>
   </p>
 <% end %>
 
-<%= link_to 'Back', topics_path %>
+
