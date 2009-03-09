@@ -1,9 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.home '', :controller => 'members'
-  map.resource :member_session
-  map.connect 'members/login',  :controller => "member_sessions", :action => "new"
 
-  
+  map.resource :member_session
   map.resources :members, :collection => {:list => :get}
   map.resources :topics, :member => {:enthusiasts => :get, :experts => :get, :speakers => :get} do |topic|
     topic.resources :interests, :controller => "MemberInterests"
@@ -19,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
   map.connect '', :controller => "members"
+  map.login '/login', :controller => 'member_sessions', :action => 'new'
   map.logout '/logout', :controller => 'members', :action => 'logout'
   
   # Allow downloading Web Service WSDL as a file with an extension
