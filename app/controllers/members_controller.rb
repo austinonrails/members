@@ -28,10 +28,6 @@ class MembersController < ApplicationController
       flash[:error] = 'Member not created: profile contains dis-allowed text (re. Akismet)'
       render :action => 'new' and return
     end
-    puts "\n**************************************\n"
-    puts @member.inspect
-    puts "\n**************************************\n"
-
 
     if (@member.first_name != @member.last_name) && @member.save
       flash[:notice] = 'Member was successfully created.'
