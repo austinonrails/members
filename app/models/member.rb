@@ -3,6 +3,14 @@ class Member < ActiveRecord::Base
   #for authlogin plugin
   # using email for the login id
   acts_as_authentic  :login_field => 'email'
+
+  attr_accessor_with_default :comment_type, 'biography'
+  attr_accessor_with_default :permalink, ''
+
+  has_rakismet :author => :full_name,
+                 :author_email => :email,
+                 :author_url => :url,
+                 :content =>  :bio
   
   belongs_to :occupation
   has_many :member_interests, :dependent => :destroy

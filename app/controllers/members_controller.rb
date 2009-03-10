@@ -1,4 +1,6 @@
 class MembersController < ApplicationController
+
+  has_rakismet :only => [ :create, :update ]
   
   before_filter :require_no_member, :only => [:new, :create]
   before_filter :require_member, :only => [ :edit, :update]
@@ -22,12 +24,16 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
-    comment = {:author => "#{@member.first_name}#{@member.last_name}",
-               :url => @member.url,
-               :email => @member.email,
-               :body => @member.bio,
-               :type => "biography"}
-    if (@member.first_name != @member.last_name) && Akismet.comment_check(request, comment) && @member.save
+    if @member.spam? then
+      flash[:error] = 'Member not created: profile contains dis-allowed text (re. Akismet)'
+      render :action => 'new' and return
+    end
+    puts "\n**************************************\n"
+    puts @member.inspect
+    puts "\n**************************************\n"
+
+
+    if (@member.first_name != @member.last_name) && @member.save
       flash[:notice] = 'Member was successfully created.'
       redirect_to :action => 'index'
     else
@@ -43,6 +49,12 @@ class MembersController < ApplicationController
   def update
     #always updating the current member
     @member = current_member # makes our views "cleaner" and more consistent
+    temp_member = Member.new(params[:member])
+    if temp_member.spam? then
+      flash[:error] = 'Member not updated: profile contains dis-allowed text (re. Akismet)'
+      @member = temp_member
+      render :action => 'edit' and return
+    end
     if @member.update_attributes(params[:member])
       flash[:notice] = 'Member was successfully updated.'
       redirect_to :action => 'index'
