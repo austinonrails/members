@@ -17,4 +17,5 @@ class Topic < ActiveRecord::Base
   def lower_name
     self.name = self.name.downcase
   end
+
 end

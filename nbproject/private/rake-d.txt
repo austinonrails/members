@@ -42,6 +42,7 @@ doc\:guides=Generate Rails guides
 doc\:plugins=Generate documentation for all installed plugins
 doc\:plugins\:active_scaffold=Generate documentation for the active_scaffold plugin
 doc\:plugins\:authlogic=Generate documentation for the authlogic plugin
+doc\:plugins\:auto_complete=Generate documentation for the auto_complete plugin
 doc\:plugins\:classic_pagination=Generate documentation for the classic_pagination plugin
 doc\:plugins\:enkoder=Generate documentation for the enkoder plugin
 doc\:plugins\:file_column=Generate documentation for the file_column plugin

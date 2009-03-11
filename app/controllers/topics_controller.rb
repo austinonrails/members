@@ -32,6 +32,13 @@ class TopicsController < ApplicationController
   end
 
   def create
+    input_string = fix_string(params[:topic][:name])
+    params[:topic][:name] = input_string
+    @topic = Topic.find(:first, :conditions => ["name = '#{input_string }'"])
+    if @topic then
+      flash[:notice] = "That topic already exists"
+      redirect_to :action => 'new' and return
+    end
     @topic = Topic.new(params[:topic])
 
     respond_to do |format|
@@ -92,4 +99,23 @@ class TopicsController < ApplicationController
       format.html
     end
   end
+
+  def auto_complete_for_topic_name
+    input_string = fix_string(params[:topic][:name])
+    @items = Topic.find(:all, :conditions => [ "name LIKE ?", '%' + input_string + '%' ], :order => 'name ASC', :limit => 10)
+    render :inline => "<%= auto_complete_result @items, 'name' %>"
+  end
+
+  private
+
+  #change this to control what can be in a topic string and what cannot be
+  def fix_string(input_string)
+    input_string.delete! '_'
+    input_string.delete! '-'
+    input_string.delete! ' '
+    input_string.downcase!
+    return input_string.singularize
+  end
+
+  
 end
