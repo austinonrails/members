@@ -20,4 +20,13 @@
 	  </ul>
 	</div>
 	<% end -%>
+
+    <div class="sidebar-node">
+      <h3>Search Members</h3>
+      <% form_for :member, :url => {:controller => 'members', :action => 'search'} do |f| %>
+        <%= f.submit "Search" %><br />
+        <label for="member_name" class="req">First or last name:</label>
+        <%= text_field_with_auto_complete :member, :full_name, :size => 21  %>
+      <% end %>
+    </div>
 <% end %>

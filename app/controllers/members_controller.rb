@@ -12,8 +12,6 @@ class MembersController < ApplicationController
 
   def list
     @members = Member.find(:all).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
-    @most_recent_members = Member.find(:all, :order => 'created_at desc', :limit => 5)
-	  @occupations = Occupation.find(:all, :order => 'name asc')
   end
 
   def show
@@ -69,6 +67,25 @@ class MembersController < ApplicationController
       @members = []
     end
     render :template => 'members/list'
+  end
+
+  def auto_complete_for_member_full_name
+    name = '%' + params[:member][:full_name] + '%'
+    @items = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ?", name, name ], :order => 'last_name ASC', :limit => 10)
+    render :inline => "<%= auto_complete_result @items, 'last_name' %>"
+  end
+
+  def search
+    name = '%' + params[:member][:full_name] + '%'
+    @members = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ?", name, name ]).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    case @members.length
+    when 0 then  render :template => "members/list"
+    when 1 then
+      @member = @members[0]
+      render :template => 'members/show' 
+    else
+      render :template => 'members/list' 
+    end
   end
   
   private
