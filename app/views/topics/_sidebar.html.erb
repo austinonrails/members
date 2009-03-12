@@ -1,4 +1,13 @@
 <% content_for('sidebar') do %>
+	<div class="sidebar-node">
+	  <h3>Search Topics</h3>
+	  <div style="padding: 5px;">
+	    <% form_for :topic do |f| %>
+	      <%= render :partial => 'form', :locals => {:f => f} %>
+	    <% end %>
+	  </div>
+	</div>
+
 	<% if @most_popular_topics -%>
 	<div class="sidebar-node">
 	  <h3>Popular Topics</h3>
@@ -23,12 +32,6 @@
 		  <% end -%>
 	  </ul>
 	</div>
-    
-    <div class="sidebar-node">
-      <h3>Search Topics</h3>
-      <% form_for :topic do |f| %>
-        <%= f.submit "Search" %><br />
-        <%= render :partial => 'form', :locals => {:f => f} %><% end %>
-    </div>
-	<% end -%>
+	<% end %>
+
 <% end %>
