@@ -1,2 +1,2 @@
-Rakismet::KEY = 'b191f0a19787'
+Rakismet::KEY = 'xxxxxxxxxxxx'
 Rakismet::URL = 'members.austinonrails.org'
