@@ -12,6 +12,8 @@ class MembersController < ApplicationController
 
   def list
     @members = Member.find(:all).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    @most_recent_members = Member.find(:all, :order => 'created_at desc', :limit => 5)
+	  @occupations = Occupation.find(:all, :order => 'name asc')
   end
 
   def show

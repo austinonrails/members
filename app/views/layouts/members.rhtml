@@ -58,27 +58,7 @@
       <% end %>
 	  </ul>
       </div>
-	  <% if @most_recent_members -%>
-      <div class="sidebar-node">
-        <h3>Recent Members</h3>
-        <ul>
-		  <% @most_recent_members.each do |member| -%>
-          <li><%= link_to "#{member.first_name} #{member.last_name}", {:controller => 'members', :action => 'show', :id => member} %></li>
-		  <% end -%>
-		</ul>
-      </div>
-      <% end -%>	  
-      
-	  <% if @occupations -%>
-      <div class="sidebar-node">
-        <h3>Members by Profession</h3>
-        <ul>
-		<% @occupations.each do |occupation| -%>
-          <li><%= link_to occupation.name, {:controller => 'members', :action => 'members_by_occupation', :id => occupation} %></li>
-		<% end -%>
-        </ul>
-      </div>
-	  <% end -%>
+	  <%= yield :sidebar %>
   </div>
 </div> <!-- end #subcol -->
 

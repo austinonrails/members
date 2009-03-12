@@ -1,0 +1,27 @@
+<% content_for('sidebar') do %>
+	<% if @most_popular_topics -%>
+	<div class="sidebar-node">
+	  <h3>Popular Topics</h3>
+	  <ul>
+		  <% @most_popular_topics.each do |topic| -%>
+	    	<li>
+				<%= link_to h(topic.name), topic_path(topic) %>
+			</li>
+		  <% end -%>
+	  </ul>
+	</div>
+	<% end -%>	  
+
+	<% if @most_recent_topics -%>
+	<div class="sidebar-node">
+	  <h3>Recent Topics</h3>
+	  <ul>
+		  <% @most_recent_topics.each do |topic| -%>
+	    	<li>
+				<%= link_to h(topic.name), topic_path(topic) %>
+			</li>
+		  <% end -%>
+	  </ul>
+	</div>
+	<% end -%>
+<% end %>

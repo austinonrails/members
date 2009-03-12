@@ -5,6 +5,8 @@ class TopicsController < ApplicationController
 
   def index
     @topics = Topic.find(:all, :order => "interest_count desc").paginate(:page => params[:page], :per_page => 10)
+    @most_popular_topics = Topic.find(:all, :order => 'interest_count desc', :limit => 5)
+    @most_recent_topics = Topic.find(:all, :order => 'created_at desc', :limit => 5)
 
     respond_to do |format|
       format.html

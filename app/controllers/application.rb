@@ -5,19 +5,12 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_member_session, :current_member
 
-  before_filter :prep_sidebar
-
   protected
 
   # helper_method :current_member
 
   private
   
-  def prep_sidebar
-    @most_recent_members = Member.find(:all, :order => 'created_at desc', :limit => 5)
-	  @occupations = Occupation.find(:all, :order => 'name asc')
-  end
-
     def current_member_session
       return @current_member_session if defined?(@current_member_session)
       @current_member_session = MemberSession.find
