@@ -4,6 +4,8 @@
 
 <%= will_paginate @topics %>
 
+<%= "<p>No topics found</p>" if @topics.empty? %>
+
 <br />
 
 <%= link_to('New topic', new_topic_path) if current_member %>

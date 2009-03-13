@@ -12,8 +12,6 @@ class MembersController < ApplicationController
 
   def list
     @members = Member.find(:all).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
-    @most_recent_members = Member.find(:all, :order => 'created_at desc', :limit => 5)
-    @occupations = Occupation.find(:all, :order => 'name asc')
   end
 
   def show
@@ -73,13 +71,28 @@ class MembersController < ApplicationController
 
   def auto_complete_for_member_full_name
     name = '%' + params[:member][:full_name] + '%'
-    @items = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ? OR twitter LIKE ?", name, name, name ], :order => 'last_name ASC', :limit => 10)
-    render :inline => "<%= auto_complete_result @items, 'last_name' %>"
+    @members = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ?", name, name ], :order => 'last_name ASC', :limit => 10)
+    render :inline => "<%= member_search_result @members %>"
   end
 
   def search
-    name = '%' + params[:member][:full_name] + '%'
-    @members = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ? OR twitter LIKE ?", name, name, name ]).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    name = params[:member][:full_name].split(' ')
+    case name.length
+    when 0
+      return
+    when 1
+      first_name = name[0]
+      last_name = name[0]
+    when 2
+      first_name = name[0]
+      last_name = name[1]
+    else
+      last_name = name.last
+      first_name = name[0]
+    end
+    first_name = '%' + first_name + '%'
+    last_name = '%' + last_name + '%'
+    @members = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ?", last_name, first_name ]).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     case @members.length
     when 0 then  render :template => "members/list"
     when 1 then

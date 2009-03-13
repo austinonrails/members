@@ -121,6 +121,28 @@ class TopicsController < ApplicationController
     render :inline => "<%= auto_complete_result @items, 'name' %>"
   end
 
+  def search
+    search_string = '%' + fix_string(params[:topic][:name]) + '%'
+    @topics = Topic.find(:all, :conditions => [ "name LIKE ?", search_string ]).paginate(:page => params[:page], :per_page => 10)
+    @most_popular_topics = Topic.find(:all, :order => 'interest_count desc', :limit => 5)
+    @most_recent_topics = Topic.find(:all, :order => 'created_at desc', :limit => 5)
+    render :template =>  'topics/index' and return
+  end
+
+  def update
+    @topic = Topic.find(params[:id])
+
+    respond_to do |format|
+      if @topic.update_attributes(params[:topic])
+        flash[:notice] = 'Topic was successfully updated.'
+        format.html { redirect_to(@topic) }
+      else
+        format.html { render :action => "edit" }
+      end
+    end
+  end
+
+
   private
 
   #change this to control what can be in a topic string and what cannot be
@@ -131,6 +153,5 @@ class TopicsController < ApplicationController
     input_string.downcase!
     return input_string.singularize
   end
-
   
 end
