@@ -1,4 +1,14 @@
 <% content_for('sidebar') do %>
+	<div class="sidebar-node">
+	  <h3>Search Members</h3>
+	  <div style="padding: 5px;">
+	    <% form_for :member, :url => {:controller => 'members', :action => 'search'} do |f| %>
+	      <label for="member_name" class="req">Name or twitter handle:</label>
+	      <%= text_field_with_auto_complete :member, :full_name, :size => 21, :autocomplete => "off"  %>
+	    <% end %>
+	  </div>
+	</div>
+
 	<% if @most_recent_members -%>
 	<div class="sidebar-node">
 	  <h3>Recent Members</h3>
@@ -20,13 +30,4 @@
 	  </ul>
 	</div>
 	<% end -%>
-
-    <div class="sidebar-node">
-      <h3>Search Members</h3>
-      <% form_for :member, :url => {:controller => 'members', :action => 'search'} do |f| %>
-        <%= f.submit "Search" %><br />
-        <label for="member_name" class="req">First or last name:</label>
-        <%= text_field_with_auto_complete :member, :full_name, :size => 21, :autocomplete => "off"  %>
-      <% end %>
-    </div>
 <% end %>
