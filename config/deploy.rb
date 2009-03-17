@@ -62,7 +62,7 @@ default_run_options[:pty] = true
 set :keep_releases, 20
 
 # =============================================================================
-# Phusion Passenger (mod_rails)
+# CUSTOM CAPISTRANO RECIPES
 # =============================================================================
 
 namespace :deploy do
@@ -74,9 +74,19 @@ namespace :deploy do
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
     task t, :roles => :app do ; end
-  end  
+  end
+  
+  desc "Make symlink for database.yml" 
+  task :symlink_dbyaml do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml" 
+  end
+
+  desc "Create empty database.yml in shared path" 
+  task :create_dbyaml do
+    run "mkdir -p #{shared_path}/config" 
+    put '', "#{shared_path}/config/database.yml" 
+  end
 end
 
-# =============================================================================
-# CUSTOM CAPISTRANO RECIPES
-# =============================================================================
+after 'deploy:setup', 'deploy:create_dbyaml'
+after 'deploy:update_code', 'deploy:symlink_dbyaml'
