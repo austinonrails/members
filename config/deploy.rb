@@ -86,7 +86,20 @@ namespace :deploy do
     run "mkdir -p #{shared_path}/config" 
     put '', "#{shared_path}/config/database.yml" 
   end
+
+  desc "Make symlink for rakismet.rb" 
+  task :symlink_akismet do
+    run "ln -nfs #{shared_path}/config/initializers/rakismet.rb #{release_path}/config/initializers/rakismet.rb" 
+  end
+
+  desc "Create empty rakismet.rb in shared path" 
+  task :create_akismet do
+    run "mkdir -p #{shared_path}/config/initializers" 
+    put '', "#{shared_path}/config/initializers/rakismet.rb" 
+  end
 end
 
 after 'deploy:setup', 'deploy:create_dbyaml'
+after 'deploy:setup', 'deploy:create_akismet'
 after 'deploy:update_code', 'deploy:symlink_dbyaml'
+after 'deploy:update_code', 'deploy:symlink_akismet'

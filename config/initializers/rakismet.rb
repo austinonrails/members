@@ -1,2 +1,0 @@
-Rakismet::KEY = 'xxxxxxxxxxxx'
-Rakismet::URL = 'members.austinonrails.org'
