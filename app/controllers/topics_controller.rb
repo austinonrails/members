@@ -34,35 +34,17 @@ class TopicsController < ApplicationController
   end
 
   def create
-    #this is not really just CREATE -
-    #      it is a combination of create and search
-    #We look for similar matches in the database and can get 0, 1, or many
-    # if 0: create a new topic
-    # if 1: show this topic
-    # if many: render index view
     input_string = fix_string(params[:topic][:name])
-    @topics = Topic.find(:all, :conditions => [ "name LIKE ?", '%' + input_string + '%' ])
-    case @topics.length
-    when 0 then
-      params[:topic][:name] = input_string
-      @topic = Topic.new(params[:topic])
-
-      respond_to do |format|
-        if @topic.save
-          flash[:notice] = 'Topic was successfully created.'
-          format.html { redirect_to(@topic) }
-        else
-          format.html { render :action => "new" }
-        end
+    params[:topic][:name] = input_string
+    @topic = Topic.find(:first, :conditions => ["name = '#{input_string}'"]) || Topic.new(params[:topic])
+    
+    respond_to do |format|
+      if @topic.save
+        flash[:notice] = 'Topic was successfully created.'
+        format.html { redirect_to(@topic) }
+      else
+        format.html { render :action => "new" }
       end
-    when 1 then
-      @topic = @topics[0]
-      render :template =>  'topics/show' and return
-    else
-      @topics = @topics.paginate(:page => params[:page], :per_page => 10)
-      @most_popular_topics = Topic.find(:all, :order => 'interest_count desc', :limit => 5)
-      @most_recent_topics = Topic.find(:all, :order => 'created_at desc', :limit => 5)
-      render :template =>  'topics/index' and return
     end
   end
 
