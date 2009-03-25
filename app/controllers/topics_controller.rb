@@ -1,6 +1,8 @@
 class TopicsController < ApplicationController
   before_filter :require_member, :only => [ :new, :create, :edit, :update, :destroy ]
 
+  helper :members
+  
   layout "members"
 
   def index
