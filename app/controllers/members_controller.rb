@@ -1,7 +1,10 @@
 class MembersController < ApplicationController
+
+  has_rakismet :only => [ :create, :update ]
   
-  before_filter :check_authentication, :only => [:edit, :update]
-  
+  before_filter :require_no_member, :only => [:new, :create]
+  before_filter :require_member, :only => [ :edit, :update]
+
   def index
     list
     render :template => "members/list"
@@ -9,6 +12,8 @@ class MembersController < ApplicationController
 
   def list
     @members = Member.find(:all).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    @most_recent_members = Member.find(:all, :order => 'created_at desc', :limit => 5)
+    @occupations = Occupation.find(:all, :order => 'name asc')
   end
 
   def show
@@ -21,12 +26,12 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
-    comment = {:author => "#{@member.first_name}#{@member.last_name}",
-               :url => @member.url,
-               :email => @member.email,
-               :body => @member.bio,
-               :type => "biography"}
-    if (@member.first_name != @member.last_name) && Akismet.comment_check(request, comment) && @member.save
+    if @member.spam? then
+      flash[:error] = 'Member not created: profile contains dis-allowed text (re. Akismet)'
+      render :action => 'new' and return
+    end
+
+    if (@member.first_name != @member.last_name) && @member.save
       flash[:notice] = 'Member was successfully created.'
       redirect_to :action => 'index'
     else
@@ -35,11 +40,19 @@ class MembersController < ApplicationController
   end
 
   def edit
-    @member = Member.find(session[:user_id])
+    # only allows for member to edit his own profile
+    @member = current_member
   end
 
   def update
-    @member = Member.find(params[:id])
+    #always updating the current member
+    @member = current_member # makes our views "cleaner" and more consistent
+    temp_member = Member.new(params[:member])
+    if temp_member.spam? then
+      flash[:error] = 'Member not updated: profile contains dis-allowed text (re. Akismet)'
+      @member = temp_member
+      render :action => 'edit' and return
+    end
     if @member.update_attributes(params[:member])
       flash[:notice] = 'Member was successfully updated.'
       redirect_to :action => 'index'
@@ -57,28 +70,41 @@ class MembersController < ApplicationController
     end
     render :template => 'members/list'
   end
-  
-  def login
-    if request.post?
-      @member = Member.authenticate(params[:member][:email], params[:member][:password])
-      if @member
-        session[:user_id] = @member.id
-        flash[:welcome] = "Welcome back, #{@member.first_name}"
-        redirect_to :action => "list"
-      else
-        flash[:notice] = "Login incorrect, please try again."
-        @member= Member.new(:email => params[:member][:email])
-      end
+
+  def auto_complete_for_member_full_name
+    name = '%' + params[:member][:full_name] + '%'
+    @members = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ? OR twitter LIKE ?", name, name, name ], :order => 'last_name ASC', :limit => 10)
+    render :inline => "<%= member_search_result @members %>"
+  end
+
+  def search
+    name = params[:member][:full_name].split(' ')
+    case name.length
+    when 0
+      return
+    when 1
+      first_name = name[0]
+      last_name = name[0]
+    when 2
+      first_name = name[0]
+      last_name = name[1]
+    else
+      last_name = name.last
+      first_name = name[0]
+    end
+    first_name = '%' + first_name + '%'
+    last_name = '%' + last_name + '%'
+    @members = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ?", last_name, first_name ]).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    case @members.length
+    when 0 then  render :template => "members/list"
+    when 1 then
+      @member = @members[0]
+      render :template => 'members/show' 
+    else
+      render :template => 'members/list' 
     end
   end
   
-  def logout
-    session[:user_id] = nil
-    redirect_to home_path
-  end
-  
   private
-  def check_authentication
-    redirect_to :action => 'login' unless session[:user_id] and params[:id] == session[:user_id].to_s
-  end
+
 end

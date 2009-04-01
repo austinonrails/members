@@ -76,8 +76,3 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
 
-# Include your application configuration below
-Akismet.blog = "members.austinonrails.org"
-Akismet.key = "xxxxxxxxxxxx"
-Akismet.logger = ActiveRecord::Base.logger
-

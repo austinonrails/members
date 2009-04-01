@@ -11,7 +11,7 @@
 	<h1>
 		<%=h topic.name %>
 	</h1>
-	<% if logged_in? %>
+	<% if current_member %>
 	<p>
 		<% remote_form_for(:member_interest, topic.member_interest(current_member), :url => topic_interests_path(topic), :html => {:id => dom_id(topic, 'form')}) do |f| %>
 			<%= f.check_box :is_interested, :onclick => "this.form.onsubmit(); return false;" %>&nbsp;interested?
@@ -19,14 +19,18 @@
 			<%= f.check_box :will_speak, :onclick => "this.form.onsubmit(); return false;" %>&nbsp;will speak?
 		<% end %>
 	</p>
-	<p style="font-size: 0.9em;">
-		<%= link_to 'Show interested', enthusiasts_topic_path(topic) %> |
-		<%= link_to 'Show experts', experts_topic_path(topic) %> |
-		<%= link_to 'Show speakers', speakers_topic_path(topic) %> |
-		<%= link_to 'Edit', edit_topic_path(topic) %> |
-		<%= link_to 'Delete', topic, :confirm => 'Are you sure?', :method => :delete %>
-	</p>
+
 	<% end %>
+	<p style="font-size: 0.9em;">
+		<%= link_to "#{pluralize(topic.interest_count, 'enthusiast')}", enthusiasts_topic_path(topic) %> |
+		<%= link_to "#{pluralize(topic.expert_count, 'expert')}", experts_topic_path(topic) %> |
+		<%= link_to "#{pluralize(topic.speaker_count, 'speaker')}", speakers_topic_path(topic) %>
+		<% if current_member %>
+			|
+			<%= link_to('Edit', edit_topic_path(topic)) if current_member %> |
+			<%= link_to('Delete', topic, :confirm => 'Are you sure?', :method => :delete) if current_member %>
+		<% end %>
+	</p>
 </div>
 
 <div class="spacer"></div>

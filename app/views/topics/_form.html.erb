@@ -1,4 +1,4 @@
 <p>
   <label for="topic_name" class="req">Topic:</label>
-  <%= f.text_field :name  %>
+  <%= text_field_with_auto_complete :topic, :name, :size => 21, :autocomplete => "off"  %>
 </p>

@@ -1,5 +1,9 @@
+<%= render :partial => 'sidebar' %>
+
 <%= render(:partial => 'content_heading', 
   :locals => {"heading_text" => "Member Listing", "sub_heading_text" => "Show all members, most recent first."}) %>
+
+
 
 <div class="post-body">
 <%= content_tag("p", flash[:welcome]) if flash[:welcome] %>

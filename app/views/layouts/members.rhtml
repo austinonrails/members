@@ -49,36 +49,18 @@
 	  <ul>
         <li><%= link_to 'Member Listing', list_members_path %></li>
         <li><%= link_to 'Topic Listing', topics_path %></li>
-      <% if logged_in? %>
-        <li><%= link_to 'Edit your profile', edit_member_path(session[:user_id]) %></li>
-		<li><%= link_to 'Logout', logout_path %></li>
+
+      <% if current_member %>
+        <li><%= link_to 'Edit your profile', edit_member_path(current_member.id) %></li>
+		<li><%= link_to "Logout", logout_path %></li>
+
       <% else %>
-        <li><%= link_to 'Create a new profile', :action => 'new' %></li>
-		<li><%= link_to 'Login', :action => 'login' %></li>
+        <li><%= link_to 'Create a new profile', :controller => 'members', :action => 'new' %></li>
+		<li><%= link_to 'Login', login_path %></li>
       <% end %>
 	  </ul>
       </div>
-	  <% if @most_recent_members -%>
-      <div class="sidebar-node">
-        <h3>Recent Members</h3>
-        <ul>
-		  <% @most_recent_members.each do |member| -%>
-          <li><%= link_to "#{member.first_name} #{member.last_name}", {:controller => 'members', :action => 'show', :id => member} %></li>
-		  <% end -%>
-		</ul>
-      </div>
-      <% end -%>	  
-      
-	  <% if @occupations -%>
-      <div class="sidebar-node">
-        <h3>Members by Profession</h3>
-        <ul>
-		<% @occupations.each do |occupation| -%>
-          <li><%= link_to occupation.name, {:controller => 'members', :action => 'members_by_occupation', :id => occupation} %></li>
-		<% end -%>
-        </ul>
-      </div>
-	  <% end -%>
+	  <%= yield :sidebar %>
   </div>
 </div> <!-- end #subcol -->
 
