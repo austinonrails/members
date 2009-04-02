@@ -5,13 +5,6 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_member_session, :current_member
 
-  protected
-  
-  def current_member
-    @current_member ||= Member.find(session[:user_id])
-  end
-  helper_method :current_member
-
   private
   
     def current_member_session
