@@ -17,10 +17,10 @@ set :branch, ENV['branch'] || "#{`git branch`.scan(/^\* (\S+)/)}"
 set :application, "members"
 
 # Target directory for the application on the web and app servers.
-set :deploy_to, "/var/www/apps/#{application}"
+set :deploy_to, "/home/aor/#{application}"
 
 # Login user for ssh.
-set :user, "deploy"
+set :user, "aor" # "deploy"
 
 # URL of your source repository.
 set :scm, :git
@@ -29,7 +29,8 @@ set :deploy_via, :remote_cache
 
 # Primary domain name of your application. Used as a default for all server roles.
 set :domain, "members.austinonrails.org"
-
+set :use_sudo, false
+set :shared_path, "/home/aor"
 # =============================================================================
 # ROLES
 # =============================================================================
