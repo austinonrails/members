@@ -30,7 +30,7 @@ set :deploy_via, :remote_cache
 # Primary domain name of your application. Used as a default for all server roles.
 set :domain, "members.austinonrails.org"
 set :use_sudo, false
-set :shared_path, "/home/aor"
+set :shared_path, "#{deploy_to}/shared"
 # =============================================================================
 # ROLES
 # =============================================================================
