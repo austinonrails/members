@@ -1,6 +1,12 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class TopicsControllerTest < ActionController::TestCase
+  
+  def setup
+    super
+    login(members(:first_programmer))
+  end
+  
   test "should get index" do
     get :index
     assert_response :success
@@ -14,7 +20,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   test "should create topic" do
     assert_difference('Topic.count') do
-      post :create, :topic => { }
+      post :create, :topic => { :name => "Metaprogramming Ruby" }
     end
 
     assert_redirected_to topic_path(assigns(:topic))

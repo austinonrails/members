@@ -1,17 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'members_controller'
 
-# Re-raise errors caught by the controller.
-class MembersController; def rescue_action(e) raise e end; end
-
-class MembersControllerTest < Test::Unit::TestCase
-  fixtures :members, :occupations
-
-  def setup
-    @controller = MembersController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
+class MembersControllerTest < ActionController::TestCase
 
   def test_index
     get :index
@@ -49,7 +38,7 @@ class MembersControllerTest < Test::Unit::TestCase
 
   def test_create
     num_members = Member.count
-
+    Member.any_instance.expects(:spam?).returns(false)
     post :create, :member => {:first_name => "Joe",
                               :last_name => "Schmoe",
                               :email => "joe@schmoe.com",
@@ -67,12 +56,12 @@ class MembersControllerTest < Test::Unit::TestCase
     assert_login_needed
   end
   
-  def test_editing_other_user_redirects_to_login
+  def test_cannot_edit_another_user
     login members(:first_programmer)
     
     get :edit, :id => members(:second_programmer).id
     
-    assert_redirected_to :action => "login"
+    assert_equal members(:first_programmer), assigns(:member)
     
   end
 
@@ -94,11 +83,11 @@ class MembersControllerTest < Test::Unit::TestCase
   end
   
   def test_updating_other_user_redirects_to_login
+    Member.any_instance.expects(:spam?).returns(false)
     login members(:first_programmer)
     post :update, :member => members(:first_programmer).attributes.merge(:id => members(:second_programmer).id)
 
-    assert_response :redirect
-    assert_redirected_to :action => "login"
+    assert_redirected_to :action => "index"
 
     #insure nothing changed
     assert Member.find(:first, members(:second_programmer).id).email = members(:second_programmer).email
@@ -106,7 +95,7 @@ class MembersControllerTest < Test::Unit::TestCase
 
   def test_update_after_login
     login members(:first_programmer)
-    
+    Member.any_instance.expects(:spam?).returns(false)
     post :update, :id => members(:first_programmer).id
     
     assert_response :redirect
@@ -140,14 +129,7 @@ class MembersControllerTest < Test::Unit::TestCase
   end
   
   def test_akismet_integration
-    @request.remote_addr = "202.200.232.2"
-    class << @request
-      require 'ostruct'
-      def cgi
-        OpenStruct.new({"HTTP_USER_AGENT" => "Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.0.7) Gecko/20060909 Firefox/1.5.0.7"})
-      end
-    end
-    
+    Member.any_instance.expects(:spam?).once.returns(true)
     post :create, :member => {:first_name => "viagra-test",
                               :last_name => "-123",
                               :url => "http://www.comedysportzla.com/mb1/board1/490.shtml",
@@ -161,6 +143,7 @@ class MembersControllerTest < Test::Unit::TestCase
   end
   
   def test_member_with_same_first_and_last_name_not_allowed
+    Member.any_instance.expects(:spam?).once.returns(false)
     post :create, :member => {:first_name => "foo",
                               :last_name => "foo",
                               :url => "foo.com",

@@ -4,7 +4,7 @@
 	
 <div class="post-body">
 
-<%= render :partial => "member", :locals => { "as_single" => true} %>
+<%= render :partial => @member, :locals => { "as_single" => true} %>
 <%= link_to 'Edit', :action => 'edit', :id => @member %> |
 <%= link_to 'Back', :action => 'list' %>
 </div> <!-- end .post-body -->

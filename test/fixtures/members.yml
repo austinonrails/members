@@ -5,8 +5,10 @@ first_programmer:
   last_name: User
   email: first@users.com
   url: http://users.com/first/
-  password: first_guy_password
   occupation_id: 1
+  persistence_token: foo
+  crypted_password: bc2c5774c00961030d2545155db2188289f56ee9660343a0e7e0aea87dfdb0461cf6867142377c5a67b3403ef631bb5cedf682ea733d0eaf622b1a312d0b3428
+  password_salt: 870192c8b7b2d963efa95e2c3d1538f14f6d37dd72cb5f03cad115e9f3ab127d3df23a3f6baf7cf1bee6807c6344a315bc3a2c47e7d1eeeb3b77bf66e601b989
   
 second_programmer:
   id: 2
@@ -14,24 +16,27 @@ second_programmer:
   last_name: User
   email: second@users.com
   url: http://users.com/second/
-  password: second_guy_password
   occupation_id: 1
+  crypted_password: bc2c5774c00961030d2545155db2188289f56ee9660343a0e7e0aea87dfdb0461cf6867142377c5a67b3403ef631bb5cedf682ea733d0eaf622b1a312d0b3428
+  password_salt: 870192c8b7b2d963efa95e2c3d1538f14f6d37dd72cb5f03cad115e9f3ab127d3df23a3f6baf7cf1bee6807c6344a315bc3a2c47e7d1eeeb3b77bf66e601b989
 
 first_designer:
   id: 3
   first_name: Edward
   last_name: Tufte
   email: edward@tufte.com
-  password: designer_password
   occupation_id: 2
+  crypted_password: bc2c5774c00961030d2545155db2188289f56ee9660343a0e7e0aea87dfdb0461cf6867142377c5a67b3403ef631bb5cedf682ea733d0eaf622b1a312d0b3428
+  password_salt: 870192c8b7b2d963efa95e2c3d1538f14f6d37dd72cb5f03cad115e9f3ab127d3df23a3f6baf7cf1bee6807c6344a315bc3a2c47e7d1eeeb3b77bf66e601b989
 
 no_occupation:
   id: 4
   first_name: No
   last_name: Occupupation
   email: none@occupation.com
-  password: foo
   is_email_visible: false
+  crypted_password: bc2c5774c00961030d2545155db2188289f56ee9660343a0e7e0aea87dfdb0461cf6867142377c5a67b3403ef631bb5cedf682ea733d0eaf622b1a312d0b3428
+  password_salt: 870192c8b7b2d963efa95e2c3d1538f14f6d37dd72cb5f03cad115e9f3ab127d3df23a3f6baf7cf1bee6807c6344a315bc3a2c47e7d1eeeb3b77bf66e601b989
 
   
   

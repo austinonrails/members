@@ -53,6 +53,7 @@ class MembersController < ApplicationController
       @member = temp_member
       render :action => 'edit' and return
     end
+
     if @member.update_attributes(params[:member])
       flash[:notice] = 'Member was successfully updated.'
       redirect_to :action => 'index'
@@ -64,9 +65,9 @@ class MembersController < ApplicationController
   def members_by_occupation
     begin
       @occupation = Occupation.find(params[:id])
-      @members = Member.find(:all, :conditions => ["occupation_id = ?", params[:id]]).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+      @members = Member.paginate(:conditions => ["occupation_id = ?", params[:id]], :page => params[:page], :per_page => 10, :order => "created_at DESC")
     rescue
-      @members = []
+      @members = [].paginate
     end
     render :template => 'members/list'
   end

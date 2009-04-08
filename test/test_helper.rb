@@ -1,6 +1,8 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+require 'authlogic/testing/test_unit_helpers'
+require 'mocha'
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -23,32 +25,32 @@ class Test::Unit::TestCase
   # instantiated fixtures translates to a database query per test method),
   # then set this back to true.
   self.use_instantiated_fixtures  = false
+  
+  fixtures :all
 
   # Add more helper methods to be used by all tests here...
   
   def assert_login_needed
     assert_response :redirect
-    assert_redirected_to :action => 'login'
+    assert_redirected_to :controller => :member_sessions, :action => :new
   end
   
-  def login(user)
-    post :login, :member => {:password => user.password,
-                             :email => user.email}
-    assert session[:user_id] = user.id
+  def login(member)
+    set_session_for(member)
   end
   
   def assert_email_not_shown(for_user)
     assert for_user.is_email_visible == false
     get :show, :id => for_user.id
     assert_tag :tag => "div",
-               :attributes => { "class" => "memberContact"},
+               :attributes => { "class" => "member"},
                :descendant => { :tag => "a", :child => /Login/ }
   end
   
   def assert_email_shown(for_user)
     get :show, :id => for_user.id
     assert_tag :tag => "div",
-               :attributes => {"class" => "memberContact"},
+               :attributes => {"class" => "member"},
                :descendant => { :tag => "script", :child => /hivelogic_enkoder/ }
   end
 end

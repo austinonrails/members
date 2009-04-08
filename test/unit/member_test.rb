@@ -17,20 +17,9 @@ class MemberTest < Test::Unit::TestCase
     test_member.last_name = "Jones"
     test_member.email = "fred@jones.com"
     test_member.password = "jones"
+    test_member.password_confirmation = "jones"
     assert test_member.save
     assert_equal "Fred", test_member.first_name 
-  end
-  
-  def test_login_good_password
-    first = members(:first_programmer)
-    member = Member.authenticate(first.email, first.password)
-    assert_equal first.email, member.email
-  end
-  
-  def test_login_bad_password
-    first = members(:first_programmer)
-    member = Member.authenticate(first.email, '')
-    assert_nil member
   end
   
 end

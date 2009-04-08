@@ -11,7 +11,7 @@
       <%= h(member.occupation.name) if member.occupation %>
     </span>
 
-    <span class="desc">Email: </span>
+    <span class="desc memberEmail">Email: </span>
     <%= current_member_session || member.is_email_visible ? enkode_mail(member.email, member.email) : "#{link_to "Login", :action => "login"} to view" %>
 
     <% if member.url && !member.url.empty? -%><br />
