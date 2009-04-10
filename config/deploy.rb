@@ -79,7 +79,7 @@ namespace :deploy do
   
   desc "symlink the old member images directory"
   task :symlink_images do
-    run "ln -s #{deploy_to}/public/member #{current_path}/public/member"
+    run "ln -s #{deploy_to}/public/member #{release_path}/public/member"
   end
   
   desc "Make symlink for database.yml" 
