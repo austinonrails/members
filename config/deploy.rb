@@ -77,6 +77,11 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
   
+  desc "symlink the old member images directory"
+  task :symlink_images do
+    run "ln -s #{deploy_to}/public/member #{current_path}/public/member"
+  end
+  
   desc "Make symlink for database.yml" 
   task :symlink_dbyaml do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml" 
@@ -104,3 +109,4 @@ after 'deploy:setup', 'deploy:create_dbyaml'
 after 'deploy:setup', 'deploy:create_akismet'
 after 'deploy:update_code', 'deploy:symlink_dbyaml'
 after 'deploy:update_code', 'deploy:symlink_akismet'
+after 'deploy:update_code', 'deploy:symlink_images'
