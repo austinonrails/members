@@ -86,7 +86,6 @@ class MembersControllerTest < ActionController::TestCase
     Member.any_instance.expects(:spam?).returns(false)
     login members(:first_programmer)
     post :update, :member => members(:first_programmer).attributes.merge(:id => members(:second_programmer).id)
-
     assert_redirected_to :action => "index"
 
     #insure nothing changed

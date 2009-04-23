@@ -37,6 +37,7 @@ class Test::Unit::TestCase
   
   def login(member)
     set_session_for(member)
+    member.reset_perishable_token!
   end
   
   def assert_email_not_shown(for_user)

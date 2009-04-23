@@ -4,7 +4,9 @@
   :locals => {"heading_text" => "Member Listing", "sub_heading_text" => "Show all members, most recent first."}) %>
 
 
-
+<% if flash[:notice] %>
+  <h3><%= flash[:notice] %></h3>
+<% end %>
 <div class="post-body">
 <%= content_tag("p", flash[:welcome]) if flash[:welcome] %>
 <%= "<p>Members who are #{@occupation.name.downcase.pluralize}&nbsp;" + (link_to "(Show all)", :action => :list) + "</p>" if @occupation %>

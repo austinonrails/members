@@ -6,8 +6,10 @@ ActionController::Routing::Routes.draw do |map|
       :member => {:enthusiasts => :get, :experts => :get,
                 :speakers => :get, :auto_complete_for_topic_name => :get} do |topic|
 
-    topic.resources :interests, :controller => "MemberInterests"
-  end
+      topic.resources :interests, :controller => "MemberInterests"
+    end
+    
+    map.resources :password_resets
 
   # Add your own custom routes here.
   # The priority is based upon order of creation: first created -> highest priority.

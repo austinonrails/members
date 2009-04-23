@@ -1,7 +1,5 @@
 class MemberSessionsController < ApplicationController
 
-  layout 'members'
-
   before_filter :require_no_member, :only => [:new, :create]
   before_filter :require_member, :only => :destroy
 

@@ -1,8 +1,6 @@
 class MemberInterestsController < ApplicationController
   before_filter :require_member, :only => [ :create ]
 
-  layout "members"
-
   def index
     @topic = Topic.find(params[:topic_id])
     @members = @topic.enthusiasts

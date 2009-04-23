@@ -10,7 +10,7 @@
   <p><label for="member_password" class="req">Password</label>
   <%= password_field "member", "password"%></p>
 
-  <p class="btn"><%= submit_tag "Login" %></p>
+  <p class="btn"><%= submit_tag "Login" %> <%= link_to "Reset my password", new_password_reset_path %></p>
 </div><% end %>
 </div> <!-- end .post-body --><%#
 # To change this template, choose Tools | Templates

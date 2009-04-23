@@ -37,4 +37,9 @@ class Member < ActiveRecord::Base
   def will_speak_on?(topic)
     self.presentations.exists?(topic)
   end
+  
+  def deliver_password_reset_instructions!  
+    reset_perishable_token!  
+    Notifier.deliver_password_reset_instructions(self)  
+  end
 end

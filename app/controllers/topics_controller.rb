@@ -2,8 +2,6 @@ class TopicsController < ApplicationController
   before_filter :require_member, :only => [ :new, :create, :edit, :update, :destroy ]
 
   helper :members
-  
-  layout "members"
 
   def index
     @topics = Topic.find(:all, :order => "interest_count desc").paginate(:page => params[:page], :per_page => 10)
