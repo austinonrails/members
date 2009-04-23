@@ -1,0 +1,14 @@
+<div class="post-title"><h1>Forgot Password</h1></div>
+<div class="post-body">
+<% if flash[:notice] %>
+<h3><%= flash[:notice]%></h3>
+<% end %>
+
+<% form_tag password_resets_path do %>
+  <div class="form-block">
+  <p>Fill out the form below and instructions to reset your password will be emailed to you:</p>
+  <p><label for="email" class="req">Email:</label><%= text_field_tag "email" %></p>
+  <p class="btn"><%= submit_tag "Reset my password" %></p>
+  </div>
+<% end %>
+</div>
