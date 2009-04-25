@@ -13,6 +13,7 @@ class MemberSessionsController < ApplicationController
       flash[:notice] = "Login successful!"
       redirect_back_or_default members_url
     else
+      flash[:notice] = "Login failed, please try again."
       render :action => :new
     end
   end
