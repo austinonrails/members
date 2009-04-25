@@ -26,6 +26,7 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
+    
     if @member.spam? then
       flash[:error] = 'Member not created: profile contains dis-allowed text (re. Akismet)'
       render :action => 'new' and return
@@ -47,7 +48,10 @@ class MembersController < ApplicationController
   def update
     #always updating the current member
     @member = current_member # makes our views "cleaner" and more consistent
-    temp_member = Member.new(params[:member])
+    
+    #don't read our uploaded image for the spam test
+    spam_test_params = params[:member].except(:image, :image_temp) rescue params[:member]
+    temp_member = Member.new(spam_test_params)
     if temp_member.spam? then
       flash[:error] = 'Member not updated: profile contains dis-allowed text (re. Akismet)'
       @member = temp_member

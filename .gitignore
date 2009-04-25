@@ -9,3 +9,4 @@ config/initializers/rakismet.rb
 *.swp
 nbproject/**/*
 *~
+public/member/image/**/*
