@@ -36,7 +36,7 @@ class TopicsController < ApplicationController
   def create
     input_string = fix_string(params[:topic][:name])
     params[:topic][:name] = input_string
-    @topic = Topic.find(:first, :conditions => ["name = '#{input_string}'"]) || Topic.new(params[:topic])
+    @topic = Topic.find(:first, :conditions => {:name => input_string}) || Topic.new(params[:topic])
 
     respond_to do |format|
       if @topic.save
