@@ -19,7 +19,7 @@ module MembersHelper
       result += content_tag("a", :href => "http://twitter.com/#{member.twitter}") if member.twitter
       result += content_tag("a", :href => "http://github.com/#{member.github}") if member.github
       result += content_tag("span", member.bio.slice(0,150), :class => 'note') if member.bio
-      role = (member.occupation_id ? ["Designer", "Manager", "Developer"][member.occupation_id] : "")
+      role = member.occupation.name if member.occupation
       result += content_tag("span", role, :class => 'role')
     end
   end
