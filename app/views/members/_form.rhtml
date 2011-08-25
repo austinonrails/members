@@ -7,13 +7,13 @@
 <legend>Login</legend>
 <p><label for="member_email" class="req">Email</label><%= text_field 'member', 'email'  %></p>
 <p><label for="is_email_visible">Display email to: </label>
-<%= radio_button 'member', 'is_email_visible' ,'1', "checked" => "checked" %>Public 
-<%= radio_button 'member', 'is_email_visible', '0' %>Members only
+<%= radio_button 'member', 'is_email_visible' ,'1', :checked => ("checked" if @member.is_email_visible) %>Public
+<%= radio_button 'member', 'is_email_visible', '0', :checked => ("checked" unless @member.is_email_visible) %>Members only
 <br /><br />
 <p><label for="member_password" class="req">Password</label>
-<%= password_field 'member', 'password'  %></p>
+<%= password_field 'member', 'password', :autocomplete => 'off' %></p>
 <p><label for="member_password_confirmation" class="req">Confirm Password</label>
-<%= password_field_tag 'member[password_confirmation]', @member.errors.on(:password) ? "" : @member.password %>
+<%= password_field_tag 'member[password_confirmation]', @member.errors.on(:password) ? "" : @member.password, :autocomplete => 'off' %>
 </fieldset>
 
 
