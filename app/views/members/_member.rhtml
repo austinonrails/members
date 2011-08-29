@@ -15,7 +15,7 @@
     <%= current_member_session || member.is_email_visible ? enkode_mail(member.email, member.email) : "#{link_to "Login", :action => "login"} to view" %>
 
     <% if member.url && !member.url.empty? -%><br />
-      <span class="desc">URL: </span><%= link_to member.url.first(40), member.url, :rel => "me" %>
+      <span class="desc">URL: </span><%= link_to h(member.url.first(40)), member.url, :rel => "me" %>
     <% end -%>
 
     <% if member.twitter && !member.twitter.empty? -%><br />
