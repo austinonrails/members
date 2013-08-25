@@ -1,13 +1,18 @@
 Members::Application.routes.draw do
   resources :member_sessions
+  resources :password_resets
 
   resources :members do
     collection do
       get :list
+      get :search
     end
   end
 
   resources :topics do
+    collection do
+      get :search
+    end
     member do
       get :enthusiasts
       get :experts
@@ -17,8 +22,7 @@ Members::Application.routes.draw do
     resources :interests
   end
 
-  resources :password_resets
-  match '/' => 'members#index'
   match '/login' => 'member_sessions#new', :as => :login
   match '/logout' => 'member_sessions#destroy', :as => :logout
+  root to: 'members#index'
 end

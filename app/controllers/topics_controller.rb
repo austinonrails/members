@@ -105,7 +105,7 @@ class TopicsController < ApplicationController
 
   def search
     search_string = '%' + fix_string(params[:topic][:name]) + '%'
-    @topics = Topic.where("name LIKE ?", search_string ]).paginate(:page => params[:page], :per_page => 10)
+    @topics = Topic.where("name LIKE ?", search_string).paginate(:page => params[:page], :per_page => 10)
     @most_popular_topics = Topic.find(:all, :order => 'interest_count desc', :limit => 5)
     @most_recent_topics = Topic.find(:all, :order => 'created_at desc', :limit => 5)
     render :template =>  'topics/index' and return

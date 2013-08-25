@@ -6,6 +6,7 @@ gem 'mysql2'
 
 gem 'authlogic'
 gem 'will_paginate', '~> 3.0'
+gem 'haml-rails'
 
 #was in original project 
 # gem 'file_column'
@@ -22,6 +23,17 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+
+group :development, :test do
+  gem 'debugger'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
 
 # Deploy with Capistrano
 # gem 'capistrano'

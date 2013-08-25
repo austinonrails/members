@@ -1,6 +1,6 @@
 <div class="member">
   <div class="memberImage">
-    <%= member.image ? (image_tag url_for_file_column(member, :image), :class => "member-image") : "&nbsp;"  %>
+    <%= member.image ? (image_tag member.image, :class => "member-image") : "&nbsp;"  %>
   </div>
 
   <div class="memberInfo">
@@ -10,9 +10,6 @@
     <span class="memberTitle">
       <%= h(member.occupation.name) if member.occupation %>
     </span>
-
-    <span class="desc memberEmail">Email: </span>
-    <%= current_member_session || member.is_email_visible ? enkode_mail(member.email, member.email) : "#{link_to "Login", :action => "login"} to view" %>
 
     <% if member.url && !member.url.empty? -%><br />
       <span class="desc">URL: </span><%= link_to h(member.url.first(40)), member.url, :rel => "me" %>
