@@ -4,9 +4,9 @@ class TopicsController < ApplicationController
   helper :members
 
   def index
-    @topics = Topic.find(:all, :order => "interest_count desc").paginate(:page => params[:page], :per_page => 10)
-    @most_popular_topics = Topic.find(:all, :order => 'interest_count desc', :limit => 5)
-    @most_recent_topics = Topic.find(:all, :order => 'created_at desc', :limit => 5)
+    @topics = Topic.order("interest_count desc").paginate(:page => params[:page], :per_page => 10)
+    @most_popular_topics = Topic.order('interest_count desc').limit(5)
+    @most_recent_topics = Topic.order('created_at desc').limit(5)
 
     respond_to do |format|
       format.html
@@ -36,7 +36,7 @@ class TopicsController < ApplicationController
   def create
     input_string = fix_string(params[:topic][:name])
     params[:topic][:name] = input_string
-    @topic = Topic.find(:first, :conditions => {:name => input_string}) || Topic.new(params[:topic])
+    @topic = Topic.find_or_create_by_name(input_string).first
 
     respond_to do |format|
       if @topic.save
@@ -99,13 +99,13 @@ class TopicsController < ApplicationController
 
   def auto_complete_for_topic_name
     input_string = fix_string(params[:topic][:name])
-    @items = Topic.find(:all, :conditions => [ "name LIKE ?", '%' + input_string + '%' ], :order => 'name ASC', :limit => 10)
+    @items = Topic.where("name LIKE '%?%'", input_string).order('name ASC').limit(10)
     render :inline => "<%= auto_complete_result @items, 'name' %>"
   end
 
   def search
     search_string = '%' + fix_string(params[:topic][:name]) + '%'
-    @topics = Topic.find(:all, :conditions => [ "name LIKE ?", search_string ]).paginate(:page => params[:page], :per_page => 10)
+    @topics = Topic.where("name LIKE ?", search_string ]).paginate(:page => params[:page], :per_page => 10)
     @most_popular_topics = Topic.find(:all, :order => 'interest_count desc', :limit => 5)
     @most_recent_topics = Topic.find(:all, :order => 'created_at desc', :limit => 5)
     render :template =>  'topics/index' and return

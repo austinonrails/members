@@ -1,34 +1,24 @@
-ActionController::Routing::Routes.draw do |map|
+Members::Application.routes.draw do
+  resources :member_sessions
 
-    map.resources :member_sessions
-    map.resources :members, :collection => {:list => :get}
-    map.resources :topics,
-      :member => {:enthusiasts => :get, :experts => :get,
-                :speakers => :get, :auto_complete_for_topic_name => :get} do |topic|
-
-      topic.resources :interests, :controller => "MemberInterests"
+  resources :members do
+    collection do
+      get :list
     end
-    
-    map.resources :password_resets
+  end
 
-  # Add your own custom routes here.
-  # The priority is based upon order of creation: first created -> highest priority.
-  
-  # Here's a sample route:
-  # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
+  resources :topics do
+    member do
+      get :enthusiasts
+      get :experts
+      get :speakers
+      get :auto_complete_for_topic_name
+    end
+    resources :interests
+  end
 
-  # You can have the root of your site routed by hooking up '' 
-  # -- just remember to delete public/index.html.
-  map.root  :controller => "members", :action => 'index'
-  map.login '/login', :controller => 'member_sessions', :action => 'new'
-  map.logout '/logout', :controller => 'member_sessions', :action => 'destroy'
-  
-  # Allow downloading Web Service WSDL as a file with an extension
-  # instead of a file named 'wsdl'
-  #map.connect ':controller/service.wsdl', :action => 'wsdl'
-
-  # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  resources :password_resets
+  match '/' => 'members#index'
+  match '/login' => 'member_sessions#new', :as => :login
+  match '/logout' => 'member_sessions#destroy', :as => :logout
 end

@@ -4,7 +4,7 @@
 	  <div style="padding: 5px;">
 	    <% form_for :member, :url => {:controller => 'members', :action => 'search'} do |f| %>
 	      <label for="member_name" class="req">Name or twitter handle:</label>
-	      <%= text_field_with_auto_complete :member, :full_name, :size => 21, :autocomplete => "off"  %>
+	      <%= text_field_tag :member, :full_name, :size => 21, :autocomplete => "off"  %>
 	    <% end %>
 	  </div>
 	</div>

@@ -1,7 +1,5 @@
 class MembersController < ApplicationController
 
-  has_rakismet :only => [ :create, :update ]
-  
   before_filter :require_no_member, :only => [:new, :create]
   before_filter :require_member, :only => [ :edit, :update]
 
@@ -11,7 +9,7 @@ class MembersController < ApplicationController
   end
 
   def list
-    @members = Member.find(:all).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    @members = Member.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     @most_recent_members = Member.find(:all, :order => 'created_at desc', :limit => 5)
     @occupations = Occupation.find(:all, :order => 'name asc')
   end
