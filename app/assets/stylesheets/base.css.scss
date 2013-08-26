@@ -274,7 +274,7 @@ address {
 }
 /* Rules for the top corners and border */
 #search-panel .bt {
-	background: url(../images/bg_search_results.png) no-repeat 100% 0;
+	background: image-url('bg_search_results.png') no-repeat 100% 0;
 	margin: 0 0 0 16px;
 	height: 10px;
 }
@@ -283,11 +283,11 @@ address {
 	width: 16px;
 	position: relative;
 	left: -16px;
-	background: url(../images/bg_search_results.png) no-repeat 0 0;
+	background: image-url('bg_search_results.png') no-repeat 0 0;
 }
 /* Rules for the bottom corners and border */
 #search-panel .bb {
-	background: url(../images/bg_search_results.png) no-repeat 100% 100%;
+	background: image-url('bg_search_results.png') no-repeat 100% 100%;
 	margin: 0 0 0 16px;
 	height: 16px;
 }
@@ -296,21 +296,21 @@ address {
 	width: 16px;
 	position: relative;
 	left: -16px;
-	background: url(../images/bg_search_results.png) no-repeat 0 100%;
+	background: image-url('bg_search_results.png') no-repeat 0 100%;
 }
 /* Insert the left border */
 #s1 {
 	padding: 0 0 0 16px;
-	background: url(../images/bg_search_results_left.png) repeat-y 0 0;
+	background: image-url('bg_search_results_left.png') repeat-y 0 0;
 }
 /* Insert the right border */
 #s2 {
 	padding: 0 16px 0 0;
-	background: url(../images/bg_search_results_right.png) repeat-y 100% 0;
+	background: image-url('bg_search_results_right.png') repeat-y 100% 0;
 }
 /* Content */
 #s3 {
-	background: url(../images/bg_search_results_fill.png);
+	background: image-url('bg_search_results_fill.png');
 }
 #search-close {
 	display: block;
@@ -322,7 +322,7 @@ address {
 	margin-top: 8px;
 	right: 26px;
 	z-index: 200;
-	background: url(../images/bg_close.gif) no-repeat 0 0;
+	background: image-url('bg_close.gif') no-repeat 0 0;
 	border-width: 0;
 }
 
@@ -352,7 +352,7 @@ address {
 	border-top-color: #aaa;
 	border-left-color: #aaa;
 	padding: 3px 5px 3px 20px;
-	background: url(../images/bg_magnify.gif) no-repeat 4px 50%;
+	background: image-url('bg_magnify.gif') no-repeat 4px 50%;
 }
 #q_proxy.active {
 	color: #000;
@@ -390,14 +390,14 @@ address {
 	overflow: hidden;
 }
 #preferences #layout-options {
-	background: #ddd url(../images/bg_options.gif) no-repeat 0 0;
+	background: #ddd image-url('bg_options.gif') no-repeat 0 0;
 	margin-right: 4px;
 }
 #preferences #layout-fixed {
-	background: #ddd url(../images/bg_fixed.gif) no-repeat 0 0;
+	background: #ddd image-url('bg_fixed.gif') no-repeat 0 0;
 }
 #preferences #layout-fluid {
-	background: #ddd url(../images/bg_fluid.gif) no-repeat 0 0;
+	background: #ddd image-url("bg_fluid.gif") no-repeat 0 0;
 }
 #theme-panel {
 	position: absolute;
@@ -427,9 +427,9 @@ address {
 	text-indent: -5000px;
 	overflow: hidden;
 }
-#theme-panel #cs0_swatch { background: #ddd url(../images/cs0_swatch.gif) no-repeat 0 0; }
-#theme-panel #cs1_swatch { background: #ddd url(../images/cs1_swatch.gif) no-repeat 0 0; }
-#theme-panel #cs2_swatch { background: #ddd url(../images/cs2_swatch.gif) no-repeat 0 0; }
+#theme-panel #cs0_swatch { background: #ddd image-url('cs0_swatch.gif') no-repeat 0 0; }
+#theme-panel #cs1_swatch { background: #ddd image-url('cs1_swatch.gif') no-repeat 0 0; }
+#theme-panel #cs2_swatch { background: #ddd image-url('cs2_swatch.gif') no-repeat 0 0; }
 
 /* = Structure
 -------------------------------------------------- */

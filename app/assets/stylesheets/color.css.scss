@@ -9,7 +9,7 @@ Author: James Hill, SonicIQ - [soniciq.com]
 -------------------------------------------------- */
 .cs0 {
 	background-color: #7d000a;
-	background-image: url(../images/cs0_main.gif);
+	background-image: image-url('cs0_main.gif');
 }
 .cs0 h1, .cs0 h2, .cs0 h3, .cs0 h4, .cs0 h5, .cs0 h6 {
 	color: #7d000a;
@@ -21,10 +21,10 @@ Author: James Hill, SonicIQ - [soniciq.com]
 	color: #8e111b;
 }
 .cs0 #wrapper {
-	background-image: url(../images/cs0_grad.gif);
+	background-image: image-url('cs0_grad.gif');
 }
 .cs0 #w2 {
-	background-image: url(../images/cs0_border_left.gif);
+	background-image: image-url('cs0_border_left.gif');
 }
 .cs0 #w3 {
 	background-image: url(../images/cs0_border_right.gif);
