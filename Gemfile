@@ -28,11 +28,9 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'debugger'
-end
-
-group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'awesome_print'
 end
 
 
