@@ -1,0 +1,23 @@
+
+= render 'members/content_heading',  {"heading_text" => "Please Login", "sub_heading_text" => "Login to edit your profile" })
+
+.post-body
+  - if flash[:notice]
+    %h3.notice
+      = flash[:notice]
+
+- form_tag :controller => 'member_sessions', :action => "create" do
+  .form-block
+    %p
+      %label(for="member_email" class="req")
+        Email address
+      = text_field "member", "email"
+    %p
+      %label(for="member_password" class="req")
+        Password
+      = password_field "member", "password"
+    %p.btn
+      = submit_tag "Login"
+      = link_to "Reset my password", new_password_reset_path
+
+

@@ -1,19 +1,19 @@
+<h2>hello</h2>
 <%= render(:partial => 'members/content_heading',
   :locals => {"heading_text" => "Please Login", "sub_heading_text" => "Login to edit your profile" }) %>
 <div class="post-body">
 	<% if flash[:notice] -%>
 	<h3 class="notice"><%= flash[:notice] %></h3>
 	<% end -%>
-<% form_tag :controller => 'member_sessions', :action => "create" do %><div class="form-block">
-  <p><label for="member_email" class="req">Email address</label>
-  <%= text_field "member", "email" %></p>
-  <p><label for="member_password" class="req">Password</label>
-  <%= password_field "member", "password"%></p>
-
-  <p class="btn"><%= submit_tag "Login" %> <%= link_to "Reset my password", new_password_reset_path %></p>
-</div><% end %>
-</div> <!-- end .post-body --><%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
+<% form_tag :controller => 'member_sessions', :action => "create" do %>
+  <div class="form-block">
+    <p><label for="member_email" class="req">Email address</label>
+    <%= text_field "member", "email" %></p>
+    <p><label for="member_password" class="req">Password</label>
+    <%= password_field "member", "password"%></p>
+  
+    <p class="btn"><%= submit_tag "Login" %> <%= link_to "Reset my password", new_password_reset_path %></p>
+  </div>
+<% end %>
+</div>
 

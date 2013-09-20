@@ -8,7 +8,6 @@ gem 'authlogic'
 gem 'will_paginate', '~> 3.0'
 gem 'haml-rails'
 
-
 #was in original project 
 # gem 'file_column'
 # gem 'seed-fu', '~> 2.1.0'
