@@ -1,5 +1,4 @@
 Members::Application.routes.draw do
-  resources :member_sessions
   resources :password_resets
 
   resources :members do

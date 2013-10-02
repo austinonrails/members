@@ -1,0 +1,5 @@
+- if @random_member 
+  = render 'content_heading', { "heading_text" => "Featured Member: #{@random_member.full_name}", "sub_heading_text" => ( @random_member.created_at.nil? ? nil : "Member since #{distance_of_time_in_words_to_now(@random_member.created_at)} ago") }) 
+
+  .post-body
+    = render "member",  { :member => @random_member, "as_single" => true}
