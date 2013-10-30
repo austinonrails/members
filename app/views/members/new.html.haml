@@ -1,0 +1,11 @@
+.post-body
+  - if flash[:notice] 
+    %h3.notice
+      = flash[:notice]
+
+  = form_for @member do |f| 
+    = render :partial => 'form', locals: { f: f } 
+    %p.btn
+      = submit_tag "   Add me!   "
+  or 
+  = link_to 'Cancel', :action => 'index' 

@@ -1,5 +1,6 @@
 Members::Application.routes.draw do
   resources :password_resets
+  resources :member_sessions
 
   resources :members do
     collection do

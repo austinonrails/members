@@ -18,6 +18,10 @@ class Member < ActiveRecord::Base
   has_many :member_interests, :dependent => :destroy
   has_many :interests, :through => :member_interests, :source => :topic, :conditions => {'member_interests.is_interested' => true}
 
+  def spam?
+    #probably defined in raskimet which is currently commented out
+    false
+  end
  ## comment out images for now 
   #begin
   #  file_column :image, :magick => {:geometry => "100x"}
