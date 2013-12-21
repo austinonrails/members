@@ -4,11 +4,6 @@ class MembersController < ApplicationController
   before_filter :require_member, :only => [ :edit, :update]
 
   def index
-    list
-    render :template => "members/list"
-  end
-
-  def list
     @members = Member.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     @most_recent_members = Member.find(:all, :order => 'created_at desc', :limit => 5)
     @occupations = Occupation.find(:all, :order => 'name asc')
@@ -47,15 +42,6 @@ class MembersController < ApplicationController
     #always updating the current member
     @member = current_member # makes our views "cleaner" and more consistent
     
-    #don't read our uploaded image for the spam test
-    spam_test_params = params[:member].except(:image, :image_temp) rescue params[:member]
-    temp_member = Member.new(spam_test_params)
-    if temp_member.spam? then
-      flash[:error] = 'Member not updated: profile contains dis-allowed text (re. Akismet)'
-      @member = temp_member
-      render :action => 'edit' and return
-    end
-
     if @member.update_attributes(params[:member])
       flash[:notice] = 'Member was successfully updated.'
       redirect_to :action => 'index'
@@ -71,7 +57,7 @@ class MembersController < ApplicationController
     rescue
       @members = [].paginate
     end
-    render :template => 'members/list'
+    render :index
   end
 
   def auto_complete_for_member_full_name
@@ -99,15 +85,13 @@ class MembersController < ApplicationController
     last_name = '%' + last_name + '%'
     @members = Member.find(:all, :conditions => [ "last_name LIKE ? OR first_name LIKE ?", last_name, first_name ]).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     case @members.length
-    when 0 then  render :template => "members/list"
-    when 1 then
-      @member = @members[0]
-      render :template => 'members/show' 
-    else
-      render :template => 'members/list' 
+      when 0 then  render :index
+      when 1 then
+        @member = @members.first
+        render :show 
+      else
+        render :index
     end
   end
-  
-  private
 
 end
