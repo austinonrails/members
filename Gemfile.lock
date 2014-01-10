@@ -56,6 +56,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    faker (1.2.0)
+      i18n (~> 0.5)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -148,6 +150,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   factory_girl_rails
+  faker
   haml-rails
   jquery-rails
   mysql2
