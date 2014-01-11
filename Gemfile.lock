@@ -58,6 +58,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    fivemat (1.2.1)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -151,6 +152,7 @@ DEPENDENCIES
   debugger
   factory_girl_rails
   faker
+  fivemat
   haml-rails
   jquery-rails
   mysql2
