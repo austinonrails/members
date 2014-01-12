@@ -12,7 +12,7 @@ namespace :dev do
         :password_confirmation => '#foo123',
         :occupation_id => rand(3)+1,
         :bio => Faker::Lorem.paragraph(3), 
-        :github => "http://github.com/#{Faker::Lorem.word}",
+        :github => "#{Faker::Lorem.word}",
         :twitter => "#{Faker::Lorem.word}"
 
       )
