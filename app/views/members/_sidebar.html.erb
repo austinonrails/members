@@ -2,9 +2,9 @@
 	<div class="sidebar-node">
 	  <h3>Search Members</h3>
 	  <div style="padding: 5px;">
-	    <% form_for :member, :url => {:controller => 'members', :action => 'search'} do |f| %>
+	    <% form_for :member, :url => search_members_url  do |f| %>
 	      <label for="member_name" class="req">Name or twitter handle:</label>
-	      <%= text_field_with_auto_complete :member, :full_name, :size => 21, :autocomplete => "off"  %>
+	      <%= text_field_tag :member, :full_name, :size => 21, :autocomplete => "off"  %>
 	    <% end %>
 	  </div>
 	</div>
@@ -25,7 +25,7 @@
 	  <h3>Members by Profession</h3>
 	  <ul>
 		<% @occupations.each do |occupation| -%>
-	    <li><%= link_to h(occupation.name), {:controller => 'members', :action => 'members_by_occupation', :id => occupation} %></li>
+	    <li><%= link_to h(occupation.name), "#link_to_search_with_occupation_checked"  %></li>
 		<% end -%>
 	  </ul>
 	</div>

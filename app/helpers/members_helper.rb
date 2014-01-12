@@ -9,7 +9,7 @@ module MembersHelper
   def hcard(member)
     result = ''
     content_tag("div", :id => member.full_name, :class => "vcard", :style => "display:none") do
-      result += image_tag(url_for_file_column(member, :image), :class => "photo", :rel => "me") if member.image if member.image
+      result += image_tag(member.image, :class => "photo", :rel => "me") if member.image if member.image
       result += content_tag("span", :class => "fn n") do
         sub = ''
         sub += content_tag("span", h(member.first_name), :class=>"given-name") if member.first_name

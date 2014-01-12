@@ -1,0 +1,24 @@
+- if @random_member 
+  = render 'content_heading', { "heading_text" => "Featured Member: #{@random_member.full_name}", "sub_heading_text" => ( @random_member.created_at.nil? ? nil : "Member since #{distance_of_time_in_words_to_now(@random_member.created_at)} ago") }
+
+  .post-body
+    = render "member",  { :member => @random_member, "as_single" => true}
+
+
+= render :partial => 'sidebar' 
+
+= render(:partial => 'content_heading', 
+  :locals => {"heading_text" => "Member Listing", "sub_heading_text" => "Show all members, most recent first."}) 
+
+
+- if flash[:notice] 
+  %h3
+    = flash[:notice] 
+.post-body
+  = content_tag("p", flash[:welcome]) if flash[:welcome] 
+  = "<p>Members who are #{@occupation.name.downcase.pluralize}&nbsp;" + (link_to "(Show all)", :action => :list) + "</p>" if @occupation 
+  = "No members found" if @members.empty? 
+  
+  = render :partial => "member", :collection => @members, :as => :member, :locals => {"as_single" => false} 
+  
+  = will_paginate @members 

@@ -1,9 +1,0 @@
-<%= render(:partial => 'content_heading', 
-  :locals => {"heading_text" => "Editing Member: #{@member.first_name} #{@member.last_name}", 
-  "sub_heading_text" => "Fields in <strong>bold</strong> are required"}) %>
-<div class="post-body">
-<% form_for(:member, @member, :url => member_path(@member), :html => {:method => :put, :multipart => true}) do |f| %>
-  <%= render :partial => 'form' %>
-  <p class="btn"><%= f.submit 'Save' %> -or- <%= link_to 'Cancel Edit', :action => 'index' %></p>
-<% end %>
-</div> <!-- end .post-body -->

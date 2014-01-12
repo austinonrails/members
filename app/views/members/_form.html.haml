@@ -1,0 +1,57 @@
+= flash[:error] 
+%h2
+.form-block
+  %fieldset
+    %legend
+      Login
+    %p
+      %label(for="member_email" class="req")
+        Email
+      = f.text_field :email  
+
+    %p
+      %label(for="member_password" class="req")
+        Password
+      = password_field 'member', 'password', :autocomplete => 'off' 
+    %p
+      %label(for="member_password_confirmation" class="req")
+        Confirm Password
+      = password_field_tag 'member[password_confirmation]',  :autocomplete => 'off' 
+
+  %fieldset
+    %legend
+      Personal Information
+    %p
+      %label(for="member_first_name" class="req")
+        First Name
+      = f.text_field :first_name 
+    %p
+      %label(for="member_last_name" class="req")
+        Last Name
+      = f.text_field :last_name 
+    %p
+      %label(for="member_image_url")
+        Picture
+      %p
+        upload button goes here
+    %p
+      %label(for="member_occupation")
+        Occupation
+      = f.select("occupation_id", Occupation.all.collect {|o| [ o.name, o.id ] }, { :include_blank => true })
+    %p
+      %label(for="member_url")
+        Website URL
+      = f.text_field :url 
+    %p
+      %label(for="member_twitter")
+        Twitter
+      = f.text_field :twitter
+    %p
+      %label(for="member_github")
+        Github
+    = f.text_field :github 
+    %p
+      %label(for="member_bio")
+        Bio
+    = f.text_area :bio, "cols" => 50, "rows" => 4 
+

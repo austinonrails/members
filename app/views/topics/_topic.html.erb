@@ -13,7 +13,7 @@
 	</h1>
 	<% if current_member %>
 	<p>
-		<% remote_form_for(:member_interest, topic.member_interest(current_member), :url => topic_interests_path(topic), :html => {:id => dom_id(topic, 'form')}) do |f| %>
+		<% form_for(:member_interest, topic.member_interest(current_member), :remote => true, :url => topic_interests_path(topic), :html => {:id => dom_id(topic, 'form')}) do |f| %>
 			<%= f.check_box :is_interested, :onclick => "this.form.onsubmit(); return false;" %>&nbsp;interested?
 			<%= f.check_box :is_expert, :onclick => "this.form.onsubmit(); return false;" %>&nbsp;expert?
 			<%= f.check_box :will_speak, :onclick => "this.form.onsubmit(); return false;" %>&nbsp;will speak?
