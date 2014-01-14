@@ -8,8 +8,11 @@ namespace :dev do
         :last_name => Faker::Name.last_name,
         :email => Faker::Internet.email,
         :password => 'beo93QY!!',
-        :password_confirmation => 'beo93QY!!'
-        
+        :password_confirmation => 'beo93QY!!',
+        :url => Faker::Internet.url,
+        :twitter => "@#{Faker::Internet.user_name}",
+        :bio => Faker::Lorem.paragraphs(1),
+        :github => "http://www.github.com/#{Faker::Internet.user_name}"
       )
     end
 
