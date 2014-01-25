@@ -16,7 +16,7 @@ class Member < ActiveRecord::Base
 #  
   belongs_to :occupation
   has_many :member_interests, :dependent => :destroy
-  has_many :interests, :through => :member_interests, :source => :topic, :conditions => {'member_interests.is_interested' => true}
+  has_many :interests, :through => :member_interests
 
   def spam?
     #probably defined in raskimet which is currently commented out
@@ -29,9 +29,10 @@ class Member < ActiveRecord::Base
   #  file_column :image
   #end
   
-  validates_presence_of :first_name, :last_name, :email
-  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
-  validates_uniqueness_of :email
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, email: true, presence: true, uniqueness: true 
+
   
   def full_name
     "#{first_name} #{last_name}"
@@ -46,7 +47,7 @@ class Member < ActiveRecord::Base
   end
   
   def deliver_password_reset_instructions!  
-    reset_perishable_token!  
+    reset_perishable_token!   
     Notifier.deliver_password_reset_instructions(self)  
   end
 end

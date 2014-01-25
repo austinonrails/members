@@ -1,5 +1,5 @@
 Members::Application.routes.draw do
-  resources :password_resets, only: [:create, :update]
+  resources :password_resets, only: [:new, :create, :update]
   resources :member_sessions, only: [:new, :create, :destroy]
 
   resources :members do
@@ -10,7 +10,7 @@ Members::Application.routes.draw do
   end
 
   resources :topics do
-    resources :interests, controller: "MemberInterests", only: [:index, :create]
+    resources :interests, controller: "member_interests", only: [:index, :create]
     collection do
       get :search
     end
@@ -23,7 +23,7 @@ Members::Application.routes.draw do
   end
   
 
-  match '/login' => 'member_sessions#new', :as => :login
-  match '/logout' => 'member_sessions#destroy', :as => :logout
+  get '/login' => 'member_sessions#new', :as => :login
+  get '/logout' => 'member_sessions#destroy', :as => :logout
   root to: 'members#index'
 end

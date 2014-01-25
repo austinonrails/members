@@ -3,6 +3,9 @@ require "spec_helper"
 describe "root routes" do
   
   context "password_resets" do
+    it "should display a reset form" do
+      expect(get: "/password_resets/new").to route_to(controller: 'password_resets', action: 'new')
+    end
   	it "should create a reset" do
       expect(post: "/password_resets").to route_to(controller: 'password_resets', action: 'create') 
      end
