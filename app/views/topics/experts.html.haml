@@ -1,0 +1,6 @@
+%h1
+  = "Members who are experts in #{@topic.name}"
+
+= render @experts
+
+= will_paginate @experts

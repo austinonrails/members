@@ -6,7 +6,7 @@
       .vote_count_label
         Interested
   %h1
-    = topic.name
+    = link_to topic.name, topic_path(topic)
   - if current_member
     %p
       = check_box_tag :is_interested 

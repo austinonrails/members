@@ -1,0 +1,13 @@
+
+= render 'sidebar'
+
+- if current_member
+  %p
+    = link_to('Create a new topic', new_topic_path)
+
+= render @topics
+
+= will_paginate @topics
+
+- if @topics.empty?
+  %p No topics found
