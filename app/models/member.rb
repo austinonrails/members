@@ -1,22 +1,16 @@
 class Member < ActiveRecord::Base
 
-  #for authlogin plugin
+  # for authlogin plugin
   # using email for the login id
   acts_as_authentic  do |c|
    c.login_field  'email'
   end
-# looks like an old way to do defaults
-#  attr_accessor_with_default :comment_type, 'biography'
-#  attr_accessor_with_default :permalink, ''
-# comment out for now
-#  has_rakismet :author => :full_name,
-#                 :author_email => :email,
-#                 :author_url => :url,
-#                 :content =>  :bio
-#  
+
+
+  has_many :interests
+  has_many :topics, through: :interests
+
   belongs_to :occupation
-  has_many :member_interests, :dependent => :destroy
-  has_many :interests, :through => :member_interests
 
   def spam?
     #probably defined in raskimet which is currently commented out

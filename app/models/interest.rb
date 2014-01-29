@@ -1,7 +1,10 @@
-class MemberInterest < ActiveRecord::Base
+class Interest < ActiveRecord::Base
+
+  self.table_name = "member_interests"
+
   belongs_to :member
   belongs_to :topic
-  
+
   validates_presence_of :topic_id, :member_id
   validates_uniqueness_of :topic_id, :scope => [:member_id], :message => "You've already expressed interest in this topic."
 
