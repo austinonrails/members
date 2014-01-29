@@ -29,6 +29,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'faker'
   gem 'fivemat'
+  gem 'simplecov'
 end
 
 
