@@ -1,6 +1,6 @@
 .member
   .memberImage
-    = member.image ? (image_tag member.image, :class => "member-image") : "&nbsp;" 
+    = member.image ? (image_tag member.image, :class => "member-image") : "&nbsp;".html_safe 
 
   .memberInfo
 

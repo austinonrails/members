@@ -1,0 +1,20 @@
+- content_for(:sidebar) do
+  %div.sidebar-node
+    %h3 Search Topics
+
+    = form_for :topic, :url => search_topics_path, :method => :get do |f| 
+      = f.text_field :name, :size => 21, :autocomplete => "off"
+
+  - if @most_popular_topics
+    %div.sidebar-node
+      %h3 Popular Topics
+      %ul
+        - @most_popular_topics.each do |topic|
+          = content_tag(:li, link_to(topic.name, topic_path(topic)))
+
+  - if @most_recent_topics
+    %div.sidebar-node
+      %h3 Recent Topics
+      %ul
+        - @most_recent_topics.each do |topic|
+          = content_tag(:li, link_to(topic.name, topic_path(topic)))

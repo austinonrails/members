@@ -4,7 +4,6 @@ Members::Application.routes.draw do
 
   resources :members do
     collection do
-      get :list
       get :search
     end
   end

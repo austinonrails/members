@@ -1,0 +1,7 @@
+= form_for @topic do |f| 
+  = render :partial => 'form', locals: { f: f } 
+  %p.btn
+    = submit_tag "Update"
+or 
+= link_to 'Cancel', :action => 'index' 
+
