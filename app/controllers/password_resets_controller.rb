@@ -4,9 +4,8 @@ class PasswordResetsController < ApplicationController
 
   def create  
     @member = Member.find_by_email(params[:email])  
-    debugger
+    
     if @member  
-      @member.deliver_password_reset_instructions!  
       flash[:notice] = "Instructions to reset your password have been emailed to you. " +  
       "Please check your email."  
       redirect_to root_url  
