@@ -36,8 +36,8 @@
 
     %span.desc
       Interests:
-    - for interest in member.interests
-      = link_to h(interest.name), topic_path(interest)
+    -  member.interests.each do |interest|
+      = link_to h(interest.topic.name), topic_path(interest.topic)
 %br
 =  hcard(member)
 
