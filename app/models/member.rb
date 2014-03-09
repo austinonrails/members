@@ -41,7 +41,7 @@ class Member < ActiveRecord::Base
   end
   
   def send_password_reset
-    #reset_perishable_token!   
-    PasswordResetMailer.message(self).deliver 
+    reset_perishable_token!   
+    PasswordResetMailer.send_reset(self).deliver 
   end
 end

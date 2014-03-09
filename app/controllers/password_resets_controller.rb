@@ -4,10 +4,10 @@ class PasswordResetsController < ApplicationController
 
   def create  
     @member = Member.find_by_email(params[:email])  
-    
     if @member  
-      flash[:notice] = "Instructions to reset your password have been emailed to you. " +  
-      "Please check your email."  
+      flash[:notice] = "Instructions to reset your password have been emailed to you. Please check your email."  
+      @member.reset_perishable_token!   
+      PasswordResetMailer.send_reset(@member).deliver 
       redirect_to root_url  
     else  
       flash[:notice] = "No member was found with that email address"  

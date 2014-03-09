@@ -1,10 +1,14 @@
 class PasswordResetMailer < ActionMailer::Base
-  #xdefault_url_options[:host] = "members.austinonrails.org"  
+  default_url_options[:host] = "members.austinonrails.org"  
 
-  def message(member)  
-  	debugger
-    #@password_reset_url = edit_password_reset_url(member.perishable_token)
-    mail(to: member.email, subject: "[austinonrails] Password Reset Instructions" )   
+  def send_reset(member)
+    @member = member
+    @edit_password_reset_url = edit_password_reset_url(@member.perishable_token)
+    mail(subject: "[austinonrails] Password Reset Instructions",
+         from:    "admin@austinonrails.com",
+         recipients:  @member.email,
+         content_type: "text/html"
+    )
   end
 
 end

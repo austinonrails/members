@@ -10,29 +10,29 @@
     %span.memberTitle
       = h(member.occupation.name) if member.occupation
 
-    - if member.url && !member.url.empty?
+    - if member.url.present?
       %span.desc
         URL:
         = link_to h(member.url.first(40)), member.url, :rel => "me"
 
-    - if member.twitter && !member.twitter.empty?
+    - if member.twitter.present?
       %br
       %span.desc
         Twitter:
       = link_to h("@#{member.twitter}"), "http://twitter.com/#{member.twitter}", :target => '_blank' 
   
-    - if member.github && !member.github.empty?
+    - if member.github.present?
       %br
       %span.desc
         Github:
       = link_to h("http://github.com/#{member.github}"), "http://github.com/#{member.github}", :target => '_blank'
 
-    - if member.bio && ! member.bio.blank? 
+    - if member.bio.present?
       %br
       %span.desc
         Bio:
       = member.bio
-    %br
+    %br 
 
     %span.desc
       Interests:
