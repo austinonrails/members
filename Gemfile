@@ -30,6 +30,10 @@ group :development, :test do
   gem 'faker'
   gem 'fivemat'
   gem 'simplecov'
+  gem 'capybara'
+  gem 'cucumber-rails'
+  gem 'selenium-webdriver' 
+  gem 'database_cleaner'
 end
 
 

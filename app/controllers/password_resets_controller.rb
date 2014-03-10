@@ -16,6 +16,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update  
+    @member = Member.find_by_perishable_token(params[:id])
     @member.password = params[:member][:password]  
     @member.password_confirmation = params[:member][:password_confirmation]  
     if @member.save  
@@ -25,6 +26,11 @@ class PasswordResetsController < ApplicationController
       render :action => :edit  
     end  
   end
+
+  def edit
+    @member = Member.find_by_perishable_token(params[:id])
+  end
+
   
   private  
   def load_member_using_perishable_token  
