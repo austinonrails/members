@@ -16,7 +16,7 @@ Then(/^I fill in email with my address$/) do
 end
 
 Then(/^I use the url to go to change password page$/) do
-  visit edit_password_reset_path(id: @user.perishable_token)
+  visit edit_password_reset_path(@user.perishable_token)
 end
 
 Then(/^fill in a new password and confirmation$/) do
