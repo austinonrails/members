@@ -9,33 +9,33 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090422220831) do
+ActiveRecord::Schema.define(version: 20090422220831) do
 
-  create_table "member_interests", :force => true do |t|
+  create_table "member_interests", force: true do |t|
     t.integer  "member_id"
     t.integer  "topic_id"
-    t.boolean  "is_interested", :default => false
-    t.boolean  "is_expert",     :default => false
-    t.boolean  "will_speak",    :default => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.boolean  "is_interested", default: false
+    t.boolean  "is_expert",     default: false
+    t.boolean  "will_speak",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "members", :force => true do |t|
-    t.string   "first_name",        :limit => 50
-    t.string   "last_name",         :limit => 50
-    t.string   "email",             :limit => 50
+  create_table "members", force: true do |t|
+    t.string   "first_name",        limit: 50
+    t.string   "last_name",         limit: 50
+    t.string   "email",             limit: 50
     t.integer  "occupation_id"
     t.string   "url"
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_email_visible",                 :default => true
-    t.string   "bio",               :limit => 320
-    t.string   "twitter",                          :default => ""
-    t.string   "github",                           :default => ""
+    t.boolean  "is_email_visible",             default: true
+    t.text     "bio"
+    t.string   "twitter",                      default: ""
+    t.string   "github",                       default: ""
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
@@ -45,23 +45,23 @@ ActiveRecord::Schema.define(:version => 20090422220831) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.string   "perishable_token",                 :default => "",   :null => false
+    t.string   "perishable_token",             default: "",   null: false
   end
 
-  add_index "members", ["email"], :name => "index_members_on_email"
-  add_index "members", ["perishable_token"], :name => "index_members_on_perishable_token"
+  add_index "members", ["email"], name: "index_members_on_email", using: :btree
+  add_index "members", ["perishable_token"], name: "index_members_on_perishable_token", using: :btree
 
-  create_table "occupations", :force => true do |t|
-    t.string "name", :null => false
+  create_table "occupations", force: true do |t|
+    t.string "name", default: "", null: false
   end
 
-  create_table "topics", :force => true do |t|
-    t.string   "name",           :default => "", :null => false
-    t.integer  "interest_count", :default => 0
-    t.integer  "expert_count",   :default => 0
-    t.integer  "speaker_count",  :default => 0
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+  create_table "topics", force: true do |t|
+    t.string   "name",           default: "", null: false
+    t.integer  "interest_count", default: 0
+    t.integer  "expert_count",   default: 0
+    t.integer  "speaker_count",  default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

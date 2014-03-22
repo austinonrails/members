@@ -40,8 +40,8 @@ class Member < ActiveRecord::Base
     self.presentations.exists?(topic)
   end
   
-  def deliver_password_reset_instructions!  
+  def send_password_reset
     reset_perishable_token!   
-    Notifier.deliver_password_reset_instructions(self)  
+    PasswordResetMailer.send_reset(self).deliver 
   end
 end

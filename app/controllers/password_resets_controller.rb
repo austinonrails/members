@@ -4,11 +4,10 @@ class PasswordResetsController < ApplicationController
 
   def create  
     @member = Member.find_by_email(params[:email])  
-    debugger
     if @member  
-      @member.deliver_password_reset_instructions!  
-      flash[:notice] = "Instructions to reset your password have been emailed to you. " +  
-      "Please check your email."  
+      flash[:notice] = "Instructions to reset your password have been emailed to you. Please check your email."  
+      @member.reset_perishable_token!   
+      PasswordResetMailer.send_reset(@member).deliver 
       redirect_to root_url  
     else  
       flash[:notice] = "No member was found with that email address"  
@@ -17,6 +16,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update  
+    @member = Member.find_by_perishable_token(params[:id])
     @member.password = params[:member][:password]  
     @member.password_confirmation = params[:member][:password_confirmation]  
     if @member.save  
@@ -26,6 +26,11 @@ class PasswordResetsController < ApplicationController
       render :action => :edit  
     end  
   end
+
+  def edit
+    @member = Member.find_by_perishable_token(params[:id])
+  end
+
   
   private  
   def load_member_using_perishable_token  

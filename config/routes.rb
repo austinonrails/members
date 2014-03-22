@@ -1,5 +1,5 @@
 Members::Application.routes.draw do
-  resources :password_resets, only: [:new, :create, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :member_sessions, only: [:new, :create, :destroy]
 
   resources :members do
