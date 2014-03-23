@@ -18,7 +18,7 @@ class MembersController < ApplicationController
   end
 
   def create
-    @member = Member.new(params[:member])
+    @member = Member.new(member_params)
     
     if @member.spam? then
       flash[:error] = 'Member not created: profile contains dis-allowed text (re. Akismet)'
@@ -42,7 +42,7 @@ class MembersController < ApplicationController
     #always updating the current member
     @member = current_member # makes our views "cleaner" and more consistent
     
-    if @member.update_attributes(params[:member])
+    if @member.update_attributes(member_params)
       flash[:notice] = 'Member was successfully updated.'
       redirect_to :action => 'index'
     else
@@ -94,4 +94,8 @@ class MembersController < ApplicationController
     end
   end
 
+  private
+  def member_params
+    params.require(:member).permit(:first_name, :last_name, :email, :occupation_id, :url, :image, :bio, :twitter, :github)
+  end
 end
