@@ -3,8 +3,6 @@ ruby '2.0.0'
 
 gem 'rails', '4.0'
 
-gem 'mysql2'
-
 gem 'authlogic'
 gem 'will_paginate', '~> 3.0'
 gem 'haml-rails'
@@ -18,11 +16,15 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'therubyracer'
 gem 'uglifier', '>= 1.0.3'
-
 gem 'jquery-rails'
 
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
 
 group :development, :test do
+  gem 'mysql2'
   gem 'debugger'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
